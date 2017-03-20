@@ -102,7 +102,7 @@
 				7DB88DD11E7FD95F008814EC /* Info.plist */,
 				7DB88DD71E7FDD6A008814EC /* MapViewController.swift */,
 				7D90B9C51E82B035005A2869 /* RegisterViewController.swift */,
-				7DB9889C1E813E70000870A9 /* EventViewController.swift */
+				7DB9889C1E813E70000870A9 /* EventViewController.swift */,
 			);
 			path = RektParty;
 			sourceTree = "<group>";
