@@ -34,6 +34,20 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>RektParty do not share your informations</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>GoogleMaps</key>
+			<string>maps.googlesapis.com</string>
+		</dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
