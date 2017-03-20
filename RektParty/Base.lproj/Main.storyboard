@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,7 +28,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="onClickLoginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zi0-Rg-H0h"/>
-                                    <segue destination="sb5-5E-RWp" kind="showDetail" id="B9l-jh-WXg"/>
+                                    <segue destination="C3Y-Jn-3dn" kind="showDetail" id="B9l-jh-WXg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -46,25 +47,80 @@
                         <viewControllerLayoutGuide type="top" id="JOH-8E-wds"/>
                         <viewControllerLayoutGuide type="bottom" id="O8b-00-3ht"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="z9x-8l-gFM" customClass="GMSMapView">
+                    <view key="view" contentMode="scaleToFill" id="z9x-8l-gFM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SxU-6O-g52">
-                                <rect key="frame" x="16" y="6" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1X-0O-Bc9" customClass="RoundButton" customModule="RektParty" customModuleProvider="target">
+                                <rect key="frame" x="314" y="537" width="55" height="55"/>
+                                <color key="backgroundColor" red="0.27662248148343171" green="0.64465949051361127" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="UGQ-2n-0bo"/>
+                                    <constraint firstAttribute="width" constant="55" id="Vgq-9a-IpS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" image="addBtn"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="29"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOT-1x-pv9" customClass="GMSMapView">
+                                <rect key="frame" x="-4" y="64" width="383" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IOT-1x-pv9" firstAttribute="leading" secondItem="z9x-8l-gFM" secondAttribute="leadingMargin" constant="-20" id="26k-tX-hjb"/>
+                            <constraint firstItem="O8b-00-3ht" firstAttribute="top" secondItem="D1X-0O-Bc9" secondAttribute="bottom" constant="75" id="ZNd-rA-d8a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D1X-0O-Bc9" secondAttribute="trailing" constant="-10" id="b7f-xe-Rql"/>
+                            <constraint firstItem="IOT-1x-pv9" firstAttribute="trailing" secondItem="z9x-8l-gFM" secondAttribute="trailingMargin" constant="20" id="bSH-pF-Rvl"/>
+                            <constraint firstItem="IOT-1x-pv9" firstAttribute="top" secondItem="JOH-8E-wds" secondAttribute="bottom" id="sDI-oM-ZCL"/>
+                            <constraint firstItem="O8b-00-3ht" firstAttribute="top" secondItem="IOT-1x-pv9" secondAttribute="bottom" id="wb0-yx-yUW"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Explorer" id="BTz-pm-XtY">
+                        <barButtonItem key="backBarButtonItem" title="Return" id="eII-ec-pzB"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="z9x-8l-gFM" id="5tT-kP-6QO"/>
+                        <outlet property="addMarkerBtn" destination="D1X-0O-Bc9" id="PKq-zc-YWM"/>
+                        <outlet property="mapView" destination="IOT-1x-pv9" id="bVW-sz-bgk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ud-e5-jP7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1242" y="36"/>
+            <point key="canvasLocation" x="2180" y="35.532233883058474"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hah-ZA-rEM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C3Y-Jn-3dn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="eod-7C-LRs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sb5-5E-RWp" kind="relationship" relationship="rootViewController" id="cnP-fA-alh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rV5-6e-WyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1240.8" y="35.532233883058474"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="addBtn" width="35" height="35"/>
+    </resources>
 </document>
