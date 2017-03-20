@@ -1,3 +1,4 @@
 .vagrant/
 *.box
 Vagrantfile
+.DS_Store
