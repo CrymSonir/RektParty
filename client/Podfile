@@ -8,6 +8,7 @@ target 'RektParty' do
   # Pods for RektParty
   source 'https://github.com/CocoaPods/Specs.git'
   pod 'GoogleMaps'
+  pod 'GooglePlaces'
   pod 'Alamofire', '~> 4.4'
 
 end

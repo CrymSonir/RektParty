@@ -126,7 +126,7 @@
 				TargetAttributes = {
 					7DB88DC11E7FD95F008814EC = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = PPUZAZFR4A;
+						DevelopmentTeam = GEWCWZKDY5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -340,8 +340,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8877E0A58EB381667416D3F1 /* Pods-RektParty.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PPUZAZFR4A;
+				DEVELOPMENT_TEAM = GEWCWZKDY5;
 				INFOPLIST_FILE = RektParty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TGB.RektParty;
@@ -354,8 +355,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 09267DF167C1B6FB22F63977 /* Pods-RektParty.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PPUZAZFR4A;
+				DEVELOPMENT_TEAM = GEWCWZKDY5;
 				INFOPLIST_FILE = RektParty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TGB.RektParty;
