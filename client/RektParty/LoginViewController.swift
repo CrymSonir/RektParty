@@ -53,10 +53,10 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func onClickRegister(_ sender: UIButton) {
         self.performSegue(withIdentifier: "registerView", sender: self)
     }
-
+    
 }
 
