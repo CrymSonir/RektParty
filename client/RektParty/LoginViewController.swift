@@ -18,15 +18,24 @@ class LoginViewController: UIViewController {
     @IBAction func clickButtonLogin(_ sender: Any) {
         let parameters: Parameters = ["mail": textFieldMail.text!, "password": textFieldPassword.text!]
         Alamofire.request("http://192.168.100.100:4567/login",method: .post, parameters: parameters).responseString { response in
-            print(response.request!)  // original URL request
-            print("PUTAIN : ", response)
-            print("RESPONSE : ", response.result)   // result of response serialization
 
             if let JSON = response.result.value {
                 print("JSON: \(JSON)")
                 do {
                     // let allo:String = JSON as! String
+                    let db = UserDefaults.standard
                     let result = try JWT.decode(JSON, algorithm: .hs256("my$ecretK3y".data(using: .utf8)!))
+                    
+                    let userData = [
+                        "pseudo":result["pseudo"],
+                        "birthDate":result["birthDate"],
+                        "lastName":result["lastName"],
+                        "firstName":result["firstName"],
+                        "mail":result["mail"]
+                    ]
+                    db.set("true", forKey: "isLog")
+                    db.set(userData, forKey: "userData")
+                    
                 } catch {
                     print("ERROR TOKEN : \(error)")
                 }
