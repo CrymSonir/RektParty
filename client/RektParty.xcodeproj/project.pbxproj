@@ -88,6 +88,7 @@
 				7DB88DCC1E7FD95F008814EC /* Assets.xcassets */,
 				7DB88DCE1E7FD95F008814EC /* LaunchScreen.storyboard */,
 				7DB88DD11E7FD95F008814EC /* Info.plist */,
+				7D6A7D811E812158007BD9A7 /* RegisterViewController.swift */,
 				7DB88DD71E7FDD6A008814EC /* MapViewController.swift */,
 			);
 			path = RektParty;
@@ -230,6 +231,7 @@
 				7DB88DC81E7FD95F008814EC /* LoginViewController.swift in Sources */,
 				7DB88DC61E7FD95F008814EC /* AppDelegate.swift in Sources */,
 				7DB88DD81E7FDD6A008814EC /* MapViewController.swift in Sources */,
+				7D6A7D821E812158007BD9A7 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
