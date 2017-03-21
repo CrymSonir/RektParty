@@ -68,7 +68,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.performSegue(withIdentifier: "loginView", sender: self)
+        let db = UserDefaults.standard
+        if (db.object(forKey: "isLog") as? Bool) == nil {
+            self.performSegue(withIdentifier: "loginView", sender: self)
+        }
+        
     }
     
 }
