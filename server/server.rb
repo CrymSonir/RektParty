@@ -6,10 +6,7 @@ require 'json'
 require 'jwt'
 require_relative 'classes'
 
-
-get '/' do
-  'Bienvenue dans l\'api'
-end
+hmac_secret = 'my$ecretK3y'
 
 get '/json' do
   content_type :json
@@ -20,9 +17,7 @@ before /^(?!\/(register|login))/ do
   if(!params[:token])
     halt 300, "Missing token"
   end
-  hmac_secret = 'my$ecretK3y'
   begin
-    print("PARAMS : ", params)
     decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
     decoded_token = decoded_token[0]
     User.find_by(mail: decoded_token[:mail], password: decoded_token[:password]) do |user|
@@ -54,7 +49,6 @@ post '/login' do
   mail = params[:mail]
   password = params[:password]
   User.find_by(mail: mail, password: password) do |user|
-    hmac_secret = 'my$ecretK3y'
     userData = {
       :mail => user[:mail],
       :pseudo => user[:pseudo],
@@ -71,4 +65,37 @@ post '/login' do
     return
   end
   halt 300, "Mail or password invalid"
+end
+
+post '/event' do
+  decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
+  decoded_token = decoded_token[0]
+
+  User.find_by(mail: decoded_token["mail"]) do |user|
+    coordinates = params[:latitude] + "|" + params[:longitude]
+    newEvent = Event.new(
+      :name => params[:name],
+      :dateStart => params[:dateStart],
+      :dateEnd => params[:dateEnd],
+      :private => params[:private],
+      :status => params[:status],
+      :location => params[:location],
+      :coordinates => coordinates,
+      :organisator => user._id
+    )
+    newEvent.save
+    content_type :json
+    halt 200, newEvent.to_json
+  end
+end
+
+put '/event/join' do
+  decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
+  decoded_token = decoded_token[0]
+
+  User.find_by(mail: decoded_token["mail"]) do |user|
+    Event.find_by(_id: params[:_id]) do |event|
+      event.users.push(user)
+    end
+  end
 end
