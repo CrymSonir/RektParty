@@ -16,6 +16,23 @@ get '/json' do
   { :allo => 'keke', :bonjour => 'yoyo' }.to_json
 end
 
+before /^(?!\/(register|login))/ do
+  if(!params[:token])
+    halt 300, "Missing token"
+  end
+  hmac_secret = 'my$ecretK3y'
+  begin
+    print("PARAMS : ", params)
+    decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
+    decoded_token = decoded_token[0]
+    User.find_by(mail: decoded_token[:mail], password: decoded_token[:password]) do |user|
+      pass
+    end
+  rescue
+    halt 300, "Invalid token"
+  end
+end
+
 post '/register' do
   newUser = User.new(
     :mail => params[:mail],
@@ -38,10 +55,19 @@ post '/login' do
   password = params[:password]
   User.find_by(mail: mail, password: password) do |user|
     hmac_secret = 'my$ecretK3y'
-    token = JWT.encode user, hmac_secret, 'HS256'
-
+    userData = {
+      :mail => user[:mail],
+      :pseudo => user[:pseudo],
+      :password => user[:password],
+      :birthDate => user[:birthDate],
+      :firstName => user[:firstName],
+      :lastName => user[:lastName],
+      :groups => user[:groups],
+      :events => user[:events]
+    }
+    token = JWT.encode userData, hmac_secret, 'HS256'
     content_type :json
-    halt 200, token.to_json
+    halt 200, token
     return
   end
   halt 300, "Mail or password invalid"
