@@ -12,8 +12,9 @@ import GooglePlaces
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
+
     @IBOutlet weak var mapView: GMSMapView!
-   // @IBOutlet weak var addMarkerBtn: UIButton!
+    @IBOutlet weak var addMarkerBtn: RoundButton!
     
     var markersList: [GMSMarker] = []
     
@@ -31,12 +32,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*addMarkerBtn.contentVerticalAlignment = .center
-        
-        addMarkerBtn.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
-        addMarkerBtn.layer.cornerRadius = 0.5 * addMarkerBtn.bounds.size.width
-        addMarkerBtn.clipsToBounds = true
-        view.addSubview(addMarkerBtn)*/
+        addMarkerBtn.layer.shadowColor = UIColor.black.cgColor
+        addMarkerBtn.layer.shadowOpacity = 0.7
+        addMarkerBtn.layer.shadowOffset = CGSize.zero
+        addMarkerBtn.layer.shadowRadius = 2
         
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
