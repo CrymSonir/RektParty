@@ -7,11 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
-		7D6A7D821E812158007BD9A7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A7D811E812158007BD9A7 /* RegisterViewController.swift */; };
-=======
 		7D83B1C41E801C4C0001F601 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D83B1C31E801C4C0001F601 /* RoundButton.swift */; };
->>>>>>> working on add button for google map and marker
 		7DB88DC61E7FD95F008814EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB88DC51E7FD95F008814EC /* AppDelegate.swift */; };
 		7DB88DC81E7FD95F008814EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB88DC71E7FD95F008814EC /* LoginViewController.swift */; };
 		7DB88DCB1E7FD95F008814EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB88DC91E7FD95F008814EC /* Main.storyboard */; };
@@ -24,11 +20,7 @@
 
 /* Begin PBXFileReference section */
 		09267DF167C1B6FB22F63977 /* Pods-RektParty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RektParty.release.xcconfig"; path = "Pods/Target Support Files/Pods-RektParty/Pods-RektParty.release.xcconfig"; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		7D6A7D811E812158007BD9A7 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-=======
 		7D83B1C31E801C4C0001F601 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
->>>>>>> working on add button for google map and marker
 		7DB88DC21E7FD95F008814EC /* RektParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RektParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB88DC51E7FD95F008814EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DB88DC71E7FD95F008814EC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +90,6 @@
 				7DB88DCC1E7FD95F008814EC /* Assets.xcassets */,
 				7DB88DCE1E7FD95F008814EC /* LaunchScreen.storyboard */,
 				7DB88DD11E7FD95F008814EC /* Info.plist */,
-				7D6A7D811E812158007BD9A7 /* RegisterViewController.swift */,
 				7DB88DD71E7FDD6A008814EC /* MapViewController.swift */,
 				7DB9889C1E813E70000870A9 /* ModalViewController.swift */,
 			);
@@ -243,7 +234,6 @@
 				7DB88DC81E7FD95F008814EC /* LoginViewController.swift in Sources */,
 				7DB88DC61E7FD95F008814EC /* AppDelegate.swift in Sources */,
 				7DB88DD81E7FDD6A008814EC /* MapViewController.swift in Sources */,
-				7D6A7D821E812158007BD9A7 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

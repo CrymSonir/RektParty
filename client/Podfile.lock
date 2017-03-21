@@ -29,10 +29,6 @@ SPEC CHECKSUMS:
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   JSONWebToken: ca86f02eeb3d1f58ba5197ec2cd53c7de915ecc1
 
-<<<<<<< HEAD
-PODFILE CHECKSUM: 2306df657123ec922bf0de26bd92696ed74e3bc7
-=======
-PODFILE CHECKSUM: a3cc3fa87ecc45da02c5c48cf9d1c0cc4c136b2e
->>>>>>> Begin add event function
+PODFILE CHECKSUM: 00ec46b6b9886854250ddda7484d4ae6f1ed3a6a
 
 COCOAPODS: 1.1.1

@@ -515,11 +515,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ud-e5-jP7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="2783" y="-179"/>
-=======
             <point key="canvasLocation" x="1996" y="851"/>
->>>>>>> Begin add event function
         </scene>
         <!--View Controller-->
         <scene sceneID="23p-f6-tWZ">
@@ -667,11 +663,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="635-LZ-fNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="2782" y="591"/>
-=======
             <point key="canvasLocation" x="2822" y="851"/>
->>>>>>> Begin add event function
         </scene>
     </scenes>
     <resources>
