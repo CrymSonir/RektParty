@@ -32,7 +32,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1994.4000000000001" y="35.532233883058474"/>
+            <point key="canvasLocation" x="1918" y="-179"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="v5V-dc-9dp">
@@ -81,6 +81,9 @@
                                 </constraints>
                                 <color key="tintColor" red="0.9981227815" green="1" blue="0.97722742409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="clickButtonLogin:" destination="sb5-5E-RWp" eventType="touchUpInside" id="fnw-rp-YDU"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not registered ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrL-of-k0C">
                                 <rect key="frame" x="118" y="352" width="140" height="21"/>
@@ -135,10 +138,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ku5-IZ-Zxe"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="textFieldMail" destination="1a4-ko-0Mx" id="QVN-2n-UCe"/>
+                        <outlet property="textFieldPassword" destination="W36-0X-NJc" id="98y-fL-P7t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ud-e5-jP7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2722.4000000000001" y="35.532233883058474"/>
+            <point key="canvasLocation" x="2783" y="-179"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="23p-f6-tWZ">
@@ -286,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="635-LZ-fNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1783" y="853"/>
+            <point key="canvasLocation" x="2782" y="591"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="14K-dc-aw4">
@@ -295,7 +302,7 @@
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gK7-mD-ZBn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gK7-mD-ZBn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -306,7 +313,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIG-pm-n8N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508" y="36"/>
+            <point key="canvasLocation" x="1066" y="-179"/>
         </scene>
     </scenes>
 </document>
