@@ -14,8 +14,6 @@ import Alamofire
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
-
-
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var addMarkerBtn: RoundButton!
 
@@ -35,13 +33,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.AddEventToMap(notification:)),
             name: Notification.Name("AddEventToMap"),
             object: nil)
-        
+
         addMarkerBtn.layer.shadowColor = UIColor.black.cgColor
         addMarkerBtn.layer.shadowOpacity = 0.7
         addMarkerBtn.layer.shadowOffset = CGSize.zero

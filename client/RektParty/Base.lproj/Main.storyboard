@@ -39,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmo-fU-qXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="417"/>
+            <point key="canvasLocation" x="1974" y="-627"/>
         </scene>
         <!--Profile-->
         <scene sceneID="kDF-lw-Imm">
@@ -719,14 +719,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="635-LZ-fNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1783" y="853"/>
         </scene>
     </scenes>
     <resources>
         <image name="addBtn" width="35" height="35"/>
         <image name="closeBtnIcon" width="32" height="32"/>
+        <image name="logoutIcon" width="24" height="24"/>
         <image name="contactIcon" width="25" height="25"/>
         <image name="groupIcon" width="30" height="30"/>
-        <image name="logoutIcon" width="24" height="24"/>
         <image name="mapIcon" width="25" height="25"/>
     </resources>
 </document>
