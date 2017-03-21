@@ -103,8 +103,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         marker.map = self.mapView
     }
 
-//    override func viewDidAppear(_ animated: Bool) {
-//        self.performSegue(withIdentifier: "loginView", sender: self)
-//    }
+ override func viewDidAppear(_ animated: Bool) {
+      self.performSegue(withIdentifier: "loginView", sender: self)
+ }
     
 }
