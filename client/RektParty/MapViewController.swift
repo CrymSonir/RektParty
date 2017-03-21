@@ -125,6 +125,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         self.mapView.animate(toLocation: markerPosition)
 
     }
+
 }
 
 
