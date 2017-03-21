@@ -31,11 +31,12 @@ class LoginViewController: UIViewController {
                         "birthDate":result["birthDate"],
                         "lastName":result["lastName"],
                         "firstName":result["firstName"],
-                        "mail":result["mail"]
+                        "mail":result["mail"],
+                        "token": JSON
                     ]
-                    db.set("true", forKey: "isLog")
+                    db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
-                    
+                    self.dismiss(animated: true)
                 } catch {
                     print("ERROR TOKEN : \(error)")
                 }
