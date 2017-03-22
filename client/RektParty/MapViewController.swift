@@ -108,7 +108,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         if (db.object(forKey: "isLog") as? Bool) == nil {
             self.performSegue(withIdentifier: "loginView", sender: self)
         }
-        
     }
     
 }
