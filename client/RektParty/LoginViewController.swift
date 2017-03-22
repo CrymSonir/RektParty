@@ -30,13 +30,16 @@ class LoginViewController: UIViewController {
                         "pseudo":result["pseudo"],
                         "birthDate":result["birthDate"],
                         "lastName":result["lastName"],
-                        "firstName":result["firstName"],
-                        "mail":result["mail"],
-                        "token": JSON
+                        "firstName":result["firstName"] ,
+                        "mail":result["mail"]
+                        
                     ]
+                   
+                    db.set(JSON, forKey: "token")
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
                     self.dismiss(animated: true)
+                    
                 } catch {
                     print("ERROR TOKEN : \(error)")
                 }
