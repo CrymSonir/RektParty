@@ -67,6 +67,24 @@ post '/login' do
   halt 300, "Mail or password invalid"
 end
 
+get '/event' do
+  Event.find_by(id: params[:_id]) do |event|
+    halt 200, event.to_json
+  end
+  halt 500, "Event not found"
+end
+
+get '/event/all' do
+  decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
+  decoded_token = decoded_token[0]
+  User.find_by(mail: decoded_token["mail"]) do |user|
+    Event.find(user.event_ids) do |events|
+      halt 200, events.to_json
+    end
+  end
+  halt 500, "Event not found"
+end
+
 post '/event' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
@@ -89,6 +107,22 @@ post '/event' do
   end
 end
 
+put '/event' do
+  Event.find_by(_id: params[:_id]) do |event|
+    coordinates = params[:latitude] + "|" + params[:longitude]
+    event["name"] = params[:name],
+    event["dateStart"] = params[:dateStart]
+    event["dateEnd"] = params[:dateEnd]
+    event["private"] = params[:private]
+    event["status"] = params[:status]
+    event["location"] = params[:location]
+    event["coordinates"] = params[:coordinates]
+
+    content_type :json
+    halt 200
+  end
+end
+
 put '/event/join' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
@@ -97,5 +131,21 @@ put '/event/join' do
     Event.find_by(_id: params[:_id]) do |event|
       event.users.push(user)
     end
+  end
+end
+
+put '/user' do
+  decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
+  decoded_token = decoded_token[0]
+  User.find_by(_id: decoded_token["_id"]) do |user|
+    user["mail"] = if defined? params[:mail],
+    user["pseudo"] = if defined? params[:pseudo]
+    user["password"] = if defined? params[:password]
+    user["birthDate"] = if defined? params[:birthDate]
+    user["firstName"] = if defined? params[:firstName]
+    user["lastName"] = if defined? params[:lastName]
+
+    content_type :json
+    halt 200
   end
 end
