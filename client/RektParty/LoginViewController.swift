@@ -19,21 +19,21 @@ class LoginViewController: UIViewController {
         let parameters: Parameters = ["mail": textFieldMail.text!, "password": textFieldPassword.text!]
         Alamofire.request("http://192.168.100.100:4567/login",method: .post, parameters: parameters).responseString { response in
 
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
+            if let JWTtoken = response.result.value {
+                print("JSON: \(JWTtoken)")
                 do {
                     // let allo:String = JSON as! String
                     let db = UserDefaults.standard
-                    let result = try JWT.decode(JSON, algorithm: .hs256("my$ecretK3y".data(using: .utf8)!))
+                    let result = try JWT.decode(JWTtoken, algorithm: .hs256("my$ecretK3y".data(using: .utf8)!))
                     
                     let userData = [
                         "pseudo":result["pseudo"],
                         "birthDate":result["birthDate"],
                         "lastName":result["lastName"],
                         "firstName":result["firstName"],
-                        "mail":result["mail"],
-                        "token": JSON
+                        "mail":result["mail"]
                     ]
+                    db.set(JWTtoken, forKey: "token")
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
                     self.dismiss(animated: true)

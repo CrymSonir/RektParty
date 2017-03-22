@@ -9,6 +9,8 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import CoreFoundation
+import Alamofire
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
@@ -31,6 +33,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.AddEventToMap(notification:)),
+            name: Notification.Name("AddEventToMap"),
+            object: nil)
         
         addMarkerBtn.layer.shadowColor = UIColor.black.cgColor
         addMarkerBtn.layer.shadowOpacity = 0.7
@@ -65,12 +73,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         
         let location = locations.first
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:14)
-        let markerPosition = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
-        let marker = GMSMarker(position: markerPosition)
-        marker.title = "Me"
-        marker.map = mapView
-        marker.icon = UIImage(named: "marker")
-        mapView.selectedMarker = marker
         mapView.animate(to: camera)
         
         //Finally stop updating location otherwise it will come again and again in this delegate
@@ -80,27 +82,18 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     func getMarkers(){
         // TODO GET CREATED MARKER BY USER
-        
-        var markerPosition = CLLocationCoordinate2DMake(45.770301, 4.86365)
-        var marker = GMSMarker(position: markerPosition)
-        marker.title = "Orgie a lyon"
-        marker.icon = UIImage(named: "marker")
-        markersList.append(marker)
-        marker.map = self.mapView
-        
-        markerPosition = CLLocationCoordinate2DMake(46.770301, 4.86365)
-        marker = GMSMarker(position: markerPosition)
-        marker.title = "Orgie a paris"
-        marker.icon = UIImage(named: "marker")
-        markersList.append(marker)
-        marker.map = self.mapView
-
-        markerPosition = CLLocationCoordinate2DMake(47.770301, 4.86365)
-        marker = GMSMarker(position: markerPosition)
-        markersList.append(marker)
-        marker.title = "Orgie chez ta mere"
-        marker.icon = UIImage(named: "marker")
-        marker.map = self.mapView
+        let db = UserDefaults.standard
+        let parameters: Parameters = ["token": db.string(forKey: "token")!]
+        Alamofire.request("http://192.168.100.100:4567/event/all",method: .get, parameters: parameters).responseString { response in
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+                
+                let jsonData = try? JSONSerialization.jsonObject(with: JSON.data(using: .utf8)!, options: [])
+                NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: jsonData as! [AnyHashable : Any]?)
+                self.dismiss(animated: true)
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -109,13 +102,28 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             self.performSegue(withIdentifier: "loginView", sender: self)
         }
     }
-    
+
     @IBAction func onClickLogOut(_ sender: UIButton) {
         let db = UserDefaults.standard
         db.set(nil, forKey: "isLog")
         db.set(nil, forKey: "userData")
         
         self.performSegue(withIdentifier: "loginView", sender: self)
+    }
+
+    func AddEventToMap(notification: Notification){
+        //Take Action on Notification
+        print(notification.userInfo!["_id"]!)
+        let stringCoordinates = (notification.userInfo!["coordinates"] as! String).components(separatedBy: "|")
+        let markerPosition = CLLocationCoordinate2DMake(Double(stringCoordinates[0])!, Double(stringCoordinates[1])!)
+        let marker = GMSMarker(position: markerPosition)
+        marker.title = notification.userInfo!["name"] as? String
+        marker.icon = UIImage(named: "marker")
+        markersList.append(marker)
+        marker.map = self.mapView
+        self.mapView.selectedMarker = marker
+        self.mapView.animate(toLocation: markerPosition)
+
     }
     
 }
