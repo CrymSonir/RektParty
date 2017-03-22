@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  MapControllerViewController.swift
 //  RektParty
 //
 //  Created by stagiaire on 20/03/2017.
@@ -12,7 +12,11 @@ import GooglePlaces
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet var mapView: GMSMapView!
+
+    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var addMarkerBtn: RoundButton!
+    
+    var markersList: [GMSMarker] = []
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -28,6 +32,11 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addMarkerBtn.layer.shadowColor = UIColor.black.cgColor
+        addMarkerBtn.layer.shadowOpacity = 0.7
+        addMarkerBtn.layer.shadowOffset = CGSize.zero
+        addMarkerBtn.layer.shadowRadius = 2
+        
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         mapView.delegate = self
@@ -42,8 +51,10 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         
         self.locationManager.delegate = self
         self.locationManager.startUpdatingLocation()
+        
+        getMarkers()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,7 +62,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     //Location Manager delegates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
+        
         let location = locations.first
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:14)
         let markerPosition = CLLocationCoordinate2DMake((location?.coordinate.latitude)!, (location?.coordinate.longitude)!)
@@ -67,8 +78,36 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         
     }
     
+    func getMarkers(){
+        // TODO GET CREATED MARKER BY USER
+        
+        var markerPosition = CLLocationCoordinate2DMake(45.770301, 4.86365)
+        var marker = GMSMarker(position: markerPosition)
+        marker.title = "Orgie a lyon"
+        marker.icon = UIImage(named: "marker")
+        markersList.append(marker)
+        marker.map = self.mapView
+        
+        markerPosition = CLLocationCoordinate2DMake(46.770301, 4.86365)
+        marker = GMSMarker(position: markerPosition)
+        marker.title = "Orgie a paris"
+        marker.icon = UIImage(named: "marker")
+        markersList.append(marker)
+        marker.map = self.mapView
+        
+        markerPosition = CLLocationCoordinate2DMake(47.770301, 4.86365)
+        marker = GMSMarker(position: markerPosition)
+        markersList.append(marker)
+        marker.title = "Orgie chez ta mere"
+        marker.icon = UIImage(named: "marker")
+        marker.map = self.mapView
+    }
+
     override func viewDidAppear(_ animated: Bool) {
-        self.performSegue(withIdentifier: "loginView", sender: self)
+        let db = UserDefaults.standard
+        if (db.object(forKey: "isLog") as? Bool) == nil {
+            self.performSegue(withIdentifier: "loginView", sender: self)
+        }
     }
     
 }
