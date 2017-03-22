@@ -1,5 +1,5 @@
 //
-//  ModalViewController.swift
+//  EventViewController.swift
 //  RektParty
 //
 //  Created by stagiaire on 21/03/2017.
@@ -8,8 +8,10 @@
 
 import UIKit
 import GooglePlaces
+import Alamofire
+import JWT
 
-class ModalViewController: UIViewController {
+class EventViewController: UIViewController {
 
     let placesClient: GMSPlacesClient? = nil
     
@@ -17,19 +19,25 @@ class ModalViewController: UIViewController {
     var placeLatitude: String = ""
     var placeLongitude: String = ""
     
+    @IBOutlet weak var btnCloseModal: UIButton!
     @IBOutlet weak var eventName: UITextField!
     @IBOutlet weak var addressAutocomplete: UITextField!
     @IBOutlet weak var startDate: UIDatePicker!
     @IBOutlet weak var endDate: UIDatePicker!
     @IBOutlet weak var privateEventSwitch: UISwitch!
+    @IBOutlet weak var saveEventBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Disabled send button by default
+        saveEventBtn.isEnabled = false
+        saveEventBtn.alpha = 0.5
+        
         // Do any additional setup after loading the view.
         privateEventSwitch.isOn = false
         
-        addressAutocomplete.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingDidBegin)
+        addressAutocomplete.addTarget(self, action: #selector(addressFieldDidChange(_:)), for: .editingDidBegin)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,11 +45,38 @@ class ModalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func saveYourEventTouch(_ sender: UIButton) {
-
+    @IBAction func btnCloseModalTouchUp(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func textFieldDidChange(_ textField: UITextField) {
+    @IBAction func eventNameEditingChanged(_ sender: UITextField) {
+        checkInputsValues()
+    }
+    
+    @IBAction func saveYourEventTouchUp(_ sender: UIButton) {
+        let db = UserDefaults.standard
+        let parameters: Parameters = ["name": eventName.text!,
+                                      "dateStart": startDate.date,
+                                      "dateEnd": endDate.date,
+                                      "private": privateEventSwitch.isOn,
+                                      "location": placeAddress,
+                                      "longitude": placeLongitude,
+                                      "latitude": placeLatitude,
+                                      "token": db.string(forKey: "token")!
+        ]
+        Alamofire.request("http://192.168.100.100:4567/event",method: .post, parameters: parameters).responseString { response in
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+                
+                let jsonData = try? JSONSerialization.jsonObject(with: JSON.data(using: .utf8)!, options: [])
+                NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: jsonData as! [AnyHashable : Any]?)
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    
+    func addressFieldDidChange(_ textField: UITextField) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         
@@ -59,9 +94,21 @@ class ModalViewController: UIViewController {
         }
         present(autocompleteController, animated: true, completion: nil)
     }
+    
+    func checkInputsValues(){
+        if eventName.text == ""  || addressAutocomplete.text == "" || String(describing: startDate.date) == "" || String(describing: endDate.date) == "" {
+            saveEventBtn.isEnabled = false
+            saveEventBtn.alpha = 0.5
+        }
+        else
+        {
+            saveEventBtn.isEnabled = true
+            saveEventBtn.alpha = 1
+        }
+    }
 }
 
-extension ModalViewController: GMSAutocompleteViewControllerDelegate {
+extension EventViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
@@ -78,6 +125,7 @@ extension ModalViewController: GMSAutocompleteViewControllerDelegate {
         
         // Close the autocomplete widget.
         dismiss(animated: true, completion: nil)
+        checkInputsValues()
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
@@ -87,6 +135,7 @@ extension ModalViewController: GMSAutocompleteViewControllerDelegate {
     
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
+        checkInputsValues()
     }
     
     // Show the network activity indicator.
@@ -98,5 +147,4 @@ extension ModalViewController: GMSAutocompleteViewControllerDelegate {
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
-    
 }

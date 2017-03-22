@@ -28,6 +28,10 @@ class RegisterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func closeRegisterModalTouchUp(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func onClickRegister(_ sender: UIButton) {
         var userData = [String: String]()
         
