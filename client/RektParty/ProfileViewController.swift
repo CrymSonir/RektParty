@@ -71,6 +71,7 @@ class ProfileViewController: UIViewController {
                 print("JSON: \(JSON)")
                 do {
                     // let allo:String = JSON as! String
+
                     
                     let result = try JWT.decode(JSON, algorithm: .hs256("my$ecretK3y".data(using: .utf8)!))
                     print(result)
@@ -83,11 +84,16 @@ class ProfileViewController: UIViewController {
                     userData["lastName"] =self.txtFirstName.text!
                     userData["birthDate"] = self.txtFirstName.text!
 
+                    let db = UserDefaults.standard
+                    let result = try JWT.decode(JSON, algorithm: .hs256("my$ecretK3y".data(using: .utf8)!))
+                    print(result)
+
                     let userData = [
                         "pseudo":result["pseudo"],
                         "birthDate":result["birthDate"],
                         "lastName":result["lastName"],
                         "firstName":result["firstName"] ,
+
                         "mail":result["mail"],
                         "token": JSON
                     ]
@@ -96,6 +102,16 @@ class ProfileViewController: UIViewController {
                     db.set(userData, forKey: "userData")
                     self.dismiss(animated: true)*/
                     self.viewDidLoad()
+
+                        "mail":result["mail"]
+                        
+                    ]
+                    
+                    db.set(JSON, forKey: "token")
+                    db.set(true, forKey: "isLog")
+                    db.set(userData, forKey: "userData")
+                    self.dismiss(animated: true)
+                    
                 } catch {
                     print("ERROR TOKEN : \(error)")
                 }
