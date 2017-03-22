@@ -44,7 +44,7 @@
         <!--Profile-->
         <scene sceneID="kDF-lw-Imm">
             <objects>
-                <viewController id="D1G-2G-JPa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="D1G-2G-JPa" customClass="ProfileViewController" customModule="RektParty" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9XN-g7-zWz"/>
                         <viewControllerLayoutGuide type="bottom" id="QVe-QN-cdk"/>
@@ -138,6 +138,9 @@
                                 <state key="normal" title="Save changes">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="editProfile:" destination="D1G-2G-JPa" eventType="touchUpInside" id="Vg7-ym-wUB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -177,10 +180,22 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="contactIcon" id="1ac-tl-Siv"/>
+                    <connections>
+                        <outlet property="dpBirthDate" destination="rKj-94-dPw" id="vF1-Bd-Z3F"/>
+                        <outlet property="txtFirstName" destination="Iwd-1W-vHt" id="ZUN-x2-EvN"/>
+                        <outlet property="txtLastName" destination="osv-h3-zOD" id="tZd-Je-bUM"/>
+                        <outlet property="txtMail" destination="jvm-h0-BlC" id="ubo-ZI-WZZ"/>
+                        <outlet property="txtNickName" destination="4CZ-dj-dWN" id="k4W-6a-AOE"/>
+                        <outlet property="txtPassword" destination="fFr-fO-KdO" id="QwM-WK-cbk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bB2-Ao-gsg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="1862" y="-319"/>
+=======
+            <point key="canvasLocation" x="826" y="-989"/>
+>>>>>>> édition profile pb token
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Buk-Sv-p73">
@@ -283,6 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="2906" y="36"/>
         </scene>
         <!--Event View Controller-->
@@ -442,6 +458,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOr-yU-px7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3815" y="36"/>
+=======
+            <point key="canvasLocation" x="1863" y="163"/>
+>>>>>>> édition profile pb token
         </scene>
         <!--LoginViewController-->
         <scene sceneID="v5V-dc-9dp">
@@ -719,7 +738,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="635-LZ-fNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="1783" y="853"/>
+=======
+            <point key="canvasLocation" x="2577" y="781"/>
+>>>>>>> édition profile pb token
         </scene>
     </scenes>
     <resources>

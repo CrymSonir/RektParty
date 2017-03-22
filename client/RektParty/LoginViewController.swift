@@ -37,6 +37,7 @@ class LoginViewController: UIViewController {
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
                     self.dismiss(animated: true)
+                    
                 } catch {
                     print("ERROR TOKEN : \(error)")
                 }
