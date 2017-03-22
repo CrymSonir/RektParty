@@ -94,7 +94,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         marker.icon = UIImage(named: "marker")
         markersList.append(marker)
         marker.map = self.mapView
-        
+
         markerPosition = CLLocationCoordinate2DMake(47.770301, 4.86365)
         marker = GMSMarker(position: markerPosition)
         markersList.append(marker)
@@ -108,6 +108,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         if (db.object(forKey: "isLog") as? Bool) == nil {
             self.performSegue(withIdentifier: "loginView", sender: self)
         }
+    }
+    
+    @IBAction func onClickLogOut(_ sender: UIButton) {
+        let db = UserDefaults.standard
+        db.set(nil, forKey: "isLog")
+        db.set(nil, forKey: "userData")
+        
+        self.performSegue(withIdentifier: "loginView", sender: self)
     }
     
 }

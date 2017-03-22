@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D83B1C41E801C4C0001F601 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D83B1C31E801C4C0001F601 /* RoundButton.swift */; };
+		7D90B9C61E82B035005A2869 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D90B9C51E82B035005A2869 /* RegisterViewController.swift */; };
 		7DB88DC61E7FD95F008814EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB88DC51E7FD95F008814EC /* AppDelegate.swift */; };
 		7DB88DC81E7FD95F008814EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB88DC71E7FD95F008814EC /* LoginViewController.swift */; };
 		7DB88DCB1E7FD95F008814EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB88DC91E7FD95F008814EC /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		09267DF167C1B6FB22F63977 /* Pods-RektParty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RektParty.release.xcconfig"; path = "Pods/Target Support Files/Pods-RektParty/Pods-RektParty.release.xcconfig"; sourceTree = "<group>"; };
 		7D83B1C31E801C4C0001F601 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		7D90B9C51E82B035005A2869 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7DB88DC21E7FD95F008814EC /* RektParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RektParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB88DC51E7FD95F008814EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DB88DC71E7FD95F008814EC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,13 @@
 			name = UIModels;
 			sourceTree = "<group>";
 		};
+		7D90B9C41E827E45005A2869 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		7DB88DB91E7FD95F008814EC = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +92,7 @@
 		7DB88DC41E7FD95F008814EC /* RektParty */ = {
 			isa = PBXGroup;
 			children = (
+				7D90B9C41E827E45005A2869 /* Model */,
 				7D83B1C21E801C180001F601 /* UIModels */,
 				7DB88DC51E7FD95F008814EC /* AppDelegate.swift */,
 				7DB88DC71E7FD95F008814EC /* LoginViewController.swift */,
@@ -91,6 +101,7 @@
 				7DB88DCE1E7FD95F008814EC /* LaunchScreen.storyboard */,
 				7DB88DD11E7FD95F008814EC /* Info.plist */,
 				7DB88DD71E7FDD6A008814EC /* MapViewController.swift */,
+				7D90B9C51E82B035005A2869 /* RegisterViewController.swift */,
 				7DB9889C1E813E70000870A9 /* ModalViewController.swift */,
 			);
 			path = RektParty;
@@ -232,6 +243,7 @@
 				7D83B1C41E801C4C0001F601 /* RoundButton.swift in Sources */,
 				7DB9889D1E813E70000870A9 /* ModalViewController.swift in Sources */,
 				7DB88DC81E7FD95F008814EC /* LoginViewController.swift in Sources */,
+				7D90B9C61E82B035005A2869 /* RegisterViewController.swift in Sources */,
 				7DB88DC61E7FD95F008814EC /* AppDelegate.swift in Sources */,
 				7DB88DD81E7FDD6A008814EC /* MapViewController.swift in Sources */,
 			);

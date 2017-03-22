@@ -57,9 +57,7 @@ class ModalViewController: UIViewController {
                 print(error)
             }
         }
-        
         present(autocompleteController, animated: true, completion: nil)
-
     }
 }
 
@@ -76,7 +74,6 @@ extension ModalViewController: GMSAutocompleteViewControllerDelegate {
         self.placeLatitude = String(place.coordinate.latitude)
         self.placeLongitude = String(place.coordinate.longitude)
         self.placeAddress = place.formattedAddress!
-        
         self.addressAutocomplete.text = place.formattedAddress
         
         // Close the autocomplete widget.

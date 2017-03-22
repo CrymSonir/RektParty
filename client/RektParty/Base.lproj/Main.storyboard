@@ -39,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmo-fU-qXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="-627"/>
+            <point key="canvasLocation" x="1862" y="417"/>
         </scene>
         <!--Profile-->
         <scene sceneID="kDF-lw-Imm">
@@ -180,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bB2-Ao-gsg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1084" y="-721"/>
+            <point key="canvasLocation" x="1862" y="-319"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Buk-Sv-p73">
@@ -199,7 +199,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kET-mk-vLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1084" y="36"/>
+            <point key="canvasLocation" x="1079" y="36"/>
         </scene>
         <!--MapViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -237,6 +237,26 @@
                                     <segue destination="KaG-Pg-Frz" kind="presentation" id="5wC-1O-fRd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyE-FL-qIn" customClass="RoundButton" customModule="RektParty" customModuleProvider="target">
+                                <rect key="frame" x="312" y="72" width="55" height="55"/>
+                                <color key="backgroundColor" red="0.35168632859999999" green="0.67550563730000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="p6I-P8-bKk"/>
+                                    <constraint firstAttribute="width" constant="55" id="voA-GY-BBW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" image="1490191061_Power-Shutdown">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="29"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClickLogOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ma3-c9-LIO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -244,6 +264,8 @@
                             <constraint firstItem="XqI-KZ-X5F" firstAttribute="leading" secondItem="Zz1-fg-BIN" secondAttribute="leadingMargin" constant="-20" id="1bC-h7-PhU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XqI-KZ-X5F" secondAttribute="trailing" constant="-20" id="9kk-C9-BJG"/>
                             <constraint firstItem="73d-EW-SGI" firstAttribute="top" secondItem="XqI-KZ-X5F" secondAttribute="bottom" id="Pj2-em-Hhq"/>
+                            <constraint firstItem="NyE-FL-qIn" firstAttribute="top" secondItem="9Ts-To-M3u" secondAttribute="bottom" constant="8" id="XYU-58-m2T"/>
+                            <constraint firstAttribute="trailing" secondItem="NyE-FL-qIn" secondAttribute="trailing" constant="8" id="bqg-Vq-va7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IId-bU-Uem" secondAttribute="trailing" constant="-10" id="eWP-fX-OwS"/>
                             <constraint firstItem="XqI-KZ-X5F" firstAttribute="top" secondItem="9Ts-To-M3u" secondAttribute="bottom" id="kdv-ke-wQO"/>
                         </constraints>
@@ -260,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1996" y="36"/>
+            <point key="canvasLocation" x="2906" y="36"/>
         </scene>
         <!--Modal View Controller-->
         <scene sceneID="Ooj-7X-XxX">
@@ -402,7 +424,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOr-yU-px7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2906" y="36"/>
+            <point key="canvasLocation" x="3815" y="36"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="v5V-dc-9dp">
@@ -515,12 +537,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ud-e5-jP7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1996" y="851"/>
+            <point key="canvasLocation" x="2906" y="851"/>
         </scene>
-        <!--View Controller-->
+        <!--Register View Controller-->
         <scene sceneID="23p-f6-tWZ">
             <objects>
-                <viewController id="QiT-Ht-zn4" sceneMemberID="viewController">
+                <viewController id="QiT-Ht-zn4" customClass="RegisterViewController" customModule="RektParty" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oa7-HT-WOe"/>
                         <viewControllerLayoutGuide type="bottom" id="KfZ-q3-YNK"/>
@@ -620,6 +642,9 @@
                                 <state key="normal" title="Register">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onClickRegister:" destination="QiT-Ht-zn4" eventType="touchUpInside" id="1LE-JT-RDk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -663,10 +688,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="635-LZ-fNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2822" y="851"/>
+            <point key="canvasLocation" x="3732" y="851"/>
         </scene>
     </scenes>
     <resources>
+        <image name="1490191061_Power-Shutdown" width="128" height="128"/>
         <image name="addBtn" width="35" height="35"/>
         <image name="contactIcon" width="25" height="25"/>
         <image name="groupIcon" width="30" height="30"/>
