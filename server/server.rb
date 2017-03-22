@@ -157,7 +157,21 @@ put '/user' do
       user.set(:lastName, params[:lastName])
     end
 
-    content_type :json
-    halt 200
+    User.find_by(_id: user._id) do |modifiedUser|
+      userData = {
+        :mail => modifiedUser[:mail],
+        :pseudo => modifiedUser[:pseudo],
+        :password => modifiedUser[:password],
+        :birthDate => modifiedUser[:birthDate],
+        :firstName => modifiedUser[:firstName],
+        :lastName => modifiedUser[:lastName],
+        :groups => modifiedUser[:groups],
+        :events => modifiedUser[:events]
+      }
+      token = JWT.encode userData, hmac_secret, 'HS256'
+      content_type :json
+      halt 200, token
+      return
+    end
   end
 end
