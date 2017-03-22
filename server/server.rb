@@ -139,22 +139,22 @@ put '/user' do
   decoded_token = decoded_token[0]
   User.find_by(_id: decoded_token["_id"]) do |user|
     if (defined?(params[:mail])).nil?
-      user["mail"] = params[:mail]
+      user.set(:mail, params[:mail])
     end
     if (defined?(params[:pseudo])).nil?
-      user["pseudo"] = params[:pseudo]
+      user.set(:pseudo, params[:pseudo])
     end
     if (defined?(params[:password])).nil?
-      user["password"] = params[:password]
+      user.set(:password, params[:password])
     end
     if (defined?(params[:birthDate])).nil?
-      user["birthDate"] = params[:birthDate]
+      user.set(:birthDate, params[:birthDate])
     end
     if (defined?(params[:firstName])).nil?
-      user["firstName"] = params[:firstName]
+      user.set(:firstName, params[:firstName])
     end
     if (defined?(params[:lastName])).nil?
-      user["lastName"] = params[:lastName]
+      user.set(:lastName, params[:lastName])
     end
 
     content_type :json
