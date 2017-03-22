@@ -110,7 +110,7 @@ end
 put '/event' do
   Event.find_by(_id: params[:_id]) do |event|
     coordinates = params[:latitude] + "|" + params[:longitude]
-    event["name"] = params[:name],
+    event["name"] = params[:name]
     event["dateStart"] = params[:dateStart]
     event["dateEnd"] = params[:dateEnd]
     event["private"] = params[:private]
@@ -138,12 +138,24 @@ put '/user' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
   User.find_by(_id: decoded_token["_id"]) do |user|
-    user["mail"] = if defined? params[:mail],
-    user["pseudo"] = if defined? params[:pseudo]
-    user["password"] = if defined? params[:password]
-    user["birthDate"] = if defined? params[:birthDate]
-    user["firstName"] = if defined? params[:firstName]
-    user["lastName"] = if defined? params[:lastName]
+    if (defined?(params[:mail])).nil?
+      user["mail"] = params[:mail]
+    end
+    if (defined?(params[:pseudo])).nil?
+      user["pseudo"] = params[:pseudo]
+    end
+    if (defined?(params[:password])).nil?
+      user["password"] = params[:password]
+    end
+    if (defined?(params[:birthDate])).nil?
+      user["birthDate"] = params[:birthDate]
+    end
+    if (defined?(params[:firstName])).nil?
+      user["firstName"] = params[:firstName]
+    end
+    if (defined?(params[:lastName])).nil?
+      user["lastName"] = params[:lastName]
+    end
 
     content_type :json
     halt 200
