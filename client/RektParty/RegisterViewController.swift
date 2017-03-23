@@ -28,39 +28,49 @@ class RegisterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func closeRegisterModalTouchUp(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func onClickRegister(_ sender: UIButton) {
         var userData = [String: String]()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        let dateString = dateFormatter.string(from:self.birthDate.date)
+        print(self.mail != nil)
         
-        userData["mail"] = self.mail.text!
-        userData["password"] = self.password.text!
-        userData["pseudo"] = self.nickName.text!
-        userData["birthDate"] = dateString
-        userData["firstName"] = self.firstName.text!
-        userData["lastName"] = self.lastName.text!
-        
-        do {
-            //Convert to Data
-            let jsonData = try! JSONSerialization.data(withJSONObject: userData, options: JSONSerialization.WritingOptions.prettyPrinted)
+        if ( self.mail != nil && self.nickName != nil && self.firstName !=  nil
+            && self.password != nil && self.birthDate != nil && self.lastName != nil && self.password != nil ) {
+            print("toto")
+            userData["mail"] = self.mail.text!
+            userData["password"] = self.password.text!
+            userData["pseudo"] = self.nickName.text!
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            let dateString = dateFormatter.string(from:self.birthDate.date)
+            userData["birthDate"] = dateString
+            userData["firstName"] = self.firstName.text!
+            userData["lastName"] = self.lastName.text!
             
-            //Convert back to string. Usually only do this for debugging
-            if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
-                print(JSONString)
+            do {
+                //Convert to Data
+                let jsonData = try! JSONSerialization.data(withJSONObject: userData, options: JSONSerialization.WritingOptions.prettyPrinted)
+                
+                //Convert back to string. Usually only do this for debugging
+                if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
+                    print(JSONString)
+                }
+                
+                //In production, you usually want to try and cast as the root data structure. Here we are casting as a dictionary. If the root object is an array cast as [AnyObject].
+                let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: AnyObject]
+                Alamofire.request("http://192.168.100.100:4567/register", method: .post, parameters: json)
+                    .responseJSON { response in
+                        print("Register Succes")   // result of response serialization
+                }
+                self.dismiss(animated: true)
+            } catch {
+                print("JSON Fail")
             }
-            
-            //In production, you usually want to try and cast as the root data structure. Here we are casting as a dictionary. If the root object is an array cast as [AnyObject].
-            let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: AnyObject]
-            Alamofire.request("http://192.168.100.100:4567/register", method: .post, parameters: json)
-                .responseJSON { response in
-                    print("Register Succes")   // result of response serialization
-            }
-            self.dismiss(animated: true)
-        } catch {
-            print("JSON Fail")
         }
+
     }
 
 

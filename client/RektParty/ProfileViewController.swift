@@ -11,7 +11,7 @@ import Alamofire
 import JWT
 
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var txtNickName: UITextField!
     @IBOutlet weak var txtMail: UITextField!
     @IBOutlet weak var dpBirthDate: UIDatePicker!
@@ -35,16 +35,16 @@ class ProfileViewController: UIViewController {
         let dateFormated = dateFormatter.date(from: userData["birthDate"] as! String)
         //print(dateFromated!)
         self.dpBirthDate.date = dateFormated!
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     @IBAction func editProfile(_ sender: UIButton) {
         
         let db = UserDefaults.standard
@@ -55,40 +55,54 @@ class ProfileViewController: UIViewController {
         let dateString = dateFormatter.string(from: dpBirthDate.date)
         var parameters: Parameters;
         if txtPassword.text != "" {
-             parameters = ["mail": txtMail.text!, "password": txtPassword.text!,
-                                          "firstName": txtFirstName.text!,"lastName": txtLastName.text!,
-            "birthDate": dateString,"pseudo": txtNickName.text!,"token": token!];
+            parameters = ["mail": txtMail.text!, "password": txtPassword.text!,
+                          "firstName": txtFirstName.text!,"lastName": txtLastName.text!,
+                          "birthDate": dateString,"pseudo": txtNickName.text!,"token": token!];
             print("here")
         }else{
-             parameters = ["mail": txtMail.text!,
-                        "firstName": txtFirstName.text!,"lastName": txtLastName.text!,
-                        "birthDate": dateString,"pseudo": txtNickName.text!,"token":token!];
+            parameters = ["mail": txtMail.text!,
+                          "firstName": txtFirstName.text!,"lastName": txtLastName.text!,
+                          "birthDate": dateString,"pseudo": txtNickName.text!,"token":token!];
         }
         print(parameters)
         Alamofire.request("http://192.168.100.100:4567/user",method: .put, parameters: parameters).responseString { response in
             
             if let JSON = response.result.value {
                 print("JSON: \(JSON)")
-                
+                do {
                     // let allo:String = JSON as! String
-                    
-                    if JSON != "OK"{
-                        print("A ZUT")
-                        self.viewDidLoad()
-                    }
+                    let db = UserDefaults.standard
+                    let result = try JWT.decode(JSON, algorithm: .hs256("my$ecretK3y".data(using: .utf8)!))
+                    print(result)
+                    let userData = [
+                        "pseudo":result["pseudo"],
+                        "birthDate":result["birthDate"],
+                        "lastName":result["lastName"],
+                        "firstName":result["firstName"] ,
+                        "mail":result["mail"]
                         
+                    ]
+                    
+                    db.set(JSON, forKey: "token")
+                    db.set(true, forKey: "isLog")
+                    db.set(userData, forKey: "userData")
+                    self.dismiss(animated: true)
+                    
+                } catch {
+                    print("ERROR TOKEN : \(error)")
+                }
             }
         }
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
-
+    
 }
