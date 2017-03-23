@@ -12,7 +12,7 @@ import JWT
 
 class ProfileViewController: UIViewController {
 
-    
+    var mapViewController: MapViewController? = nil
     @IBOutlet weak var txtMail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtNickname: UITextField!
@@ -85,11 +85,16 @@ class ProfileViewController: UIViewController {
                     db.set(JSON, forKey: "token")
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
-                    let prompt = UIAlertController(title: "Modification réussi", message: "Modification réussi", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "ok", style: .default, handler: nil)
-                    prompt.addAction(action)
-                    self.present(prompt, animated: true)
-                    self.viewDidLoad()
+                    let prompt = UIAlertController(title: "Success", message: "Modification réussi", preferredStyle: UIAlertControllerStyle.alert)
+                    self.present(prompt, animated: true,completion: nil)
+                    prompt.addAction(UIAlertAction(title: "validate", style: .default, handler: { action in
+                        
+                        //self.performSegue(withIdentifier: "backToMap", sender: self)
+                        self.viewDidLoad()
+                       //self.present(self.mapViewController!, animated: true, completion: nil!)
+                    }))
+                    
+                    //
                     
                 } catch {
                     print("ERROR TOKEN : \(error)")

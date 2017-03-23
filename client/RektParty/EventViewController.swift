@@ -71,7 +71,15 @@ class EventViewController: UIViewController {
                 
                 let jsonData = try? JSONSerialization.jsonObject(with: JSON.data(using: .utf8)!, options: [])
                 NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: jsonData as! [AnyHashable : Any]?)
-                self.dismiss(animated: true)
+                let prompt = UIAlertController(title: "Success", message: "Votre event a bien été crée", preferredStyle: UIAlertControllerStyle.alert)
+                self.present(prompt, animated: true,completion: nil)
+                prompt.addAction(UIAlertAction(title: "validate", style: .default, handler: { action in
+                    
+                    //self.performSegue(withIdentifier: "backToMap", sender: self)
+                    self.dismiss(animated: true)
+                    //self.present(self.mapViewController!, animated: true, completion: nil!)
+                }))
+                
             }
         }
     }
