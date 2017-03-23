@@ -7,3 +7,24 @@ Sylvain Revenu
 Techno use:
 Api - Ruby
 Appli - Swift - IOS
+
+
+Decription : 
+
+L'application permet à l'utilisateur de "créer un event" qui est géolocalisé sur une map, l'évenement en question peut être privé ou public
+si l'event en public il sera visible par tous les utilisateurs de l'application qui pourront choisir de rejoindre ou non l'event.
+si l'event est privé alors seul les membres d'un même groupe du créateur pourront voir l'event.
+un user peut créer / et apartenir à plusieurs groupe.
+
+
+Fonct :
+Utilisateur peut se log ( OK )
+Utilisateur peut créer un compte ( OK )
+Utilisateur peut éditer son profil ( OK )
+Utilisateur peut lister les events ( Non )
+Utilisateur peut créer un event ( OK )
+Utilisateur peut éditer un event ( Non )
+Utilisateur peut supprimer un event ( Non )
+Créer un groupe ( Non )
+Editer un groupe ( Non )
+Supprimer un groupe ( Non )
