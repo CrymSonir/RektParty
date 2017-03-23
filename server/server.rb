@@ -68,7 +68,8 @@ post '/login' do
 end
 
 get '/event' do
-  Event.find_by(id: params[:_id]) do |event|
+  event = Event.find(params[:_id])
+  if(event)
     halt 200, event.to_json
   end
   halt 500, "Event not found"
@@ -78,22 +79,24 @@ get '/event/all' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
   User.find_by(mail: decoded_token["mail"]) do |user|
-    Event.find(user.event_ids) do |events|
+    events = Event.find(user.events)
+    if(events && events.length)
       halt 200, events.to_json
     end
   end
-  halt 500, "Event not found"
+  halt 500, "Events not found"
 end
 
 get '/events' do
   time = Time.new
-  puts "coucou"+ time.strftime("%d/%m/%Y")
+  puts "should be good " + time.strftime("%d/%m/%Y")
   events = []
   Event.where(private: "0").each do |event|
-    events.push(event.to_json)
+    events.push(event)
   end
   if(events.length > 0)
-    halt 200, events
+    content_type :json
+    halt 200, events.to_json
   end
   halt 500, "Event not found"
 end
@@ -122,17 +125,43 @@ end
 
 put '/event' do
   Event.find_by(_id: params[:_id]) do |event|
-    coordinates = params[:latitude] + "|" + params[:longitude]
-    event["name"] = params[:name]
-    event["dateStart"] = params[:dateStart]
-    event["dateEnd"] = params[:dateEnd]
-    event["private"] = params[:private]
-    event["status"] = params[:status]
-    event["location"] = params[:location]
-    event["coordinates"] = params[:coordinates]
-
+    if (params[:name])
+      event.update_attribute(:name, params[:name])
+    end
+    if (params[:dateStart])
+      event.update_attribute(:dateStart, params[:dateStart])
+    end
+    if (params[:dateEnd])
+      event.update_attribute(:dateEnd, params[:dateEnd])
+    end
+    if (params[:private])
+      event.update_attribute(:private, params[:private])
+    end
+    if (params[:status])
+      event.update_attribute(:status, params[:status])
+    end
+    if (params[:location])
+      event.update_attribute(:location, params[:location])
+    end
+    if (params[:latitude] && params[:longitude])
+      coordinates = params[:latitude] + "|" + params[:longitude]
+      event.update_attribute(:coordinates, coordinates)
+    end
     content_type :json
     halt 200
+  end
+end
+
+delete '/event' do
+  begin
+    result = Event.find_by(_id: params[:_id]).delete
+    if result
+      halt 200
+    else
+      halt 500, "Delete event error"
+    end
+  rescue
+    halt 500, "Delete event error"
   end
 end
 
@@ -141,20 +170,34 @@ put '/event/join' do
   decoded_token = decoded_token[0]
 
   User.find_by(mail: decoded_token["mail"]) do |user|
-    Event.find_by(_id: params[:_id]) do |event|
+    event = Event.find_by(_id: params[:_id])
+    if(event)
       event.users.push(user)
+      halt 200
     end
   end
+  halt 500, "Join event error"
+end
+
+put '/event/leave' do
+  decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
+  decoded_token = decoded_token[0]
+
+  User.find_by(mail: decoded_token["mail"]) do |user|
+    Event.find_by(_id: params[:_id]) do |event|
+      # Probably not working
+      event.users.pop(user)
+      halt 200
+    end
+  end
+  halt 500, "Leave event error"
 end
 
 put '/user' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
 
-  puts decoded_token["mail"]
   User.find_by(mail: decoded_token["mail"]) do |user|
-    puts user
-    puts params
     if (params[:mail])
       user.update_attribute(:mail, params[:mail])
     end
