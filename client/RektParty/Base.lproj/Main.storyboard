@@ -565,7 +565,7 @@
         <!--Register View Controller-->
         <scene sceneID="23p-f6-tWZ">
             <objects>
-                <viewController id="QiT-Ht-zn4" customClass="RegisterViewController" customModule="RektParty" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="QiT-Ht-zn4" customClass="RegisterViewController" customModule="RektParty" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oa7-HT-WOe"/>
                         <viewControllerLayoutGuide type="bottom" id="KfZ-q3-YNK"/>
