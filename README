@@ -1,31 +1,39 @@
-Groupe :
-Renaud Cayol
-Vincent Weyh
-Yohann Goutaret
-Sylvain Revenu
+Groupe : Renaud Cayol - Vincent Weyh - Yohann Goutaret - Sylvain Revenu
 
 Techno use:
 Api - Ruby
-Appli - Swift - IOS
+Appli - Swift 3 - IOS
 
 
 Decription : 
 
 L'application permet à l'utilisateur de "créer un event" qui est géolocalisé sur une map, l'évenement en question peut être privé ou public
-si l'event en public il sera visible par tous les utilisateurs de l'application qui pourront choisir de rejoindre ou non l'event.
-si l'event est privé alors seul les membres d'un même groupe du créateur pourront voir l'event.
-un user peut créer / et apartenir à plusieurs groupe.
+si l'event est public, il sera visible par tous les utilisateurs de l'application qui pourront choisir de rejoindre l'event.
+si l'event est privé alors seul les membres d'un groupe invité pourront voir l'event.
+un user peut créer / et appartenir à plusieurs groupes.
 
 
-Fonct :
+Fonctionnalitées :
 Utilisateur peut se log ( OK )
 Utilisateur peut créer un compte ( OK )
 Utilisateur peut éditer son profil ( OK )
-Utilisateur peut lister les events ( Non )
+Utilisateur voit tous les event public sur la map ( OK )
 Utilisateur peut créer un event ( OK )
+
 Utilisateur peut éditer un event ( Non )
 Utilisateur peut supprimer un event ( Non )
 
 Créer un groupe ( NoTime )
 Editer un groupe ( NoTime )
 Supprimer un groupe ( NoTime )
+
+Lien du repo ( VagrantFile and box for ruby server )
+https://drive.google.com/open?id=0B_jB5rVywlRmWDBOU29hSXhlZVE
+
+Pour boot le server : 
+vagrant up 
+vagrant ssh
+cd /var/project/server
+ruby server.rb
+cd /var/project/client
+pod install
