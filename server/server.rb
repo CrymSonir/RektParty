@@ -85,6 +85,16 @@ get '/event/all' do
   halt 500, "Event not found"
 end
 
+get '/events' do
+  time = Time.new
+  puts "coucou"+ time.strftime("%d/%m/%Y")
+  Event.find_by(private: false) do |events|
+    halt 200, events.to_json
+
+  end
+  halt 500, "Event not found"
+end
+
 post '/event' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
@@ -157,7 +167,21 @@ put '/user' do
       user.set(:lastName, params[:lastName])
     end
 
-    content_type :json
-    halt 200
+    User.find_by(_id: user._id) do |modifiedUser|
+      userData = {
+        :mail => modifiedUser[:mail],
+        :pseudo => modifiedUser[:pseudo],
+        :password => modifiedUser[:password],
+        :birthDate => modifiedUser[:birthDate],
+        :firstName => modifiedUser[:firstName],
+        :lastName => modifiedUser[:lastName],
+        :groups => modifiedUser[:groups],
+        :events => modifiedUser[:events]
+      }
+      token = JWT.encode userData, hmac_secret, 'HS256'
+      content_type :json
+      halt 200, token
+      return
+    end
   end
 end

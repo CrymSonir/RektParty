@@ -14,10 +14,9 @@ import Alamofire
 
 class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
-
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var addMarkerBtn: RoundButton!
-    
+
     var markersList: [GMSMarker] = []
     
     var locationManager = CLLocationManager()
@@ -39,7 +38,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
             selector: #selector(self.AddEventToMap(notification:)),
             name: Notification.Name("AddEventToMap"),
             object: nil)
-        
+
         addMarkerBtn.layer.shadowColor = UIColor.black.cgColor
         addMarkerBtn.layer.shadowOpacity = 0.7
         addMarkerBtn.layer.shadowOffset = CGSize.zero
@@ -82,18 +81,19 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     func getMarkers(){
         // TODO GET CREATED MARKER BY USER
-        let db = UserDefaults.standard
-        let parameters: Parameters = ["token": db.string(forKey: "token")!]
-        Alamofire.request("http://192.168.100.100:4567/event/all",method: .get, parameters: parameters).responseString { response in
-            
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
-                
-                let jsonData = try? JSONSerialization.jsonObject(with: JSON.data(using: .utf8)!, options: [])
-                NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: jsonData as! [AnyHashable : Any]?)
-                self.dismiss(animated: true)
-            }
-        }
+
+//        let db = UserDefaults.standard
+//        let parameters: Parameters = ["token": db.string(forKey: "token")!]
+//        Alamofire.request("http://192.168.100.100:4567/event/all",method: .get, parameters: parameters).responseString { response in
+//            
+//            if let JSON = response.result.value {
+//                print("JSON: \(JSON)")
+//                
+//                let jsonData = try? JSONSerialization.jsonObject(with: JSON.data(using: .utf8)!, options: [])
+//                NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: jsonData as! [AnyHashable : Any]?)
+//                self.dismiss(animated: true)
+//            }
+//        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -125,5 +125,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         self.mapView.animate(toLocation: markerPosition)
 
     }
-    
+
 }
+
+

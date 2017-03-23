@@ -37,6 +37,7 @@ class LoginViewController: UIViewController {
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
                     self.dismiss(animated: true)
+                    
                 } catch {
                     print("ERROR TOKEN : \(error)")
                 }
@@ -53,10 +54,10 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func onClickRegister(_ sender: UIButton) {
         self.performSegue(withIdentifier: "registerView", sender: self)
     }
-
+    
 }
 
