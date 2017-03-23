@@ -63,7 +63,15 @@ class RegisterViewController: UIViewController {
                     .responseJSON { response in
                         print("Register Succes")   // result of response serialization
                 }
-                self.dismiss(animated: true)
+                
+                let prompt = UIAlertController(title: "Success", message: "Création réussi", preferredStyle: UIAlertControllerStyle.alert)
+                self.present(prompt, animated: true,completion: nil)
+                prompt.addAction(UIAlertAction(title: "validate", style: .default, handler: { action in
+                    
+                    self.dismiss(animated: true, completion: nil)
+                    
+                }))
+                
             } catch {
                 print("JSON Fail")
             }
