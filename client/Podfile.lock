@@ -13,6 +13,7 @@ PODS:
     - GoogleMaps/Base (= 2.2.0)
   - JSONWebToken (2.0.2):
     - CryptoSwift (~> 0.6.1)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - GooglePlacePicker
   - GooglePlaces
   - JSONWebToken
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
@@ -28,7 +30,8 @@ SPEC CHECKSUMS:
   GooglePlacePicker: 345b1aabd42c9d6d9bf2369c1bae1234d903e764
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   JSONWebToken: ca86f02eeb3d1f58ba5197ec2cd53c7de915ecc1
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 00ec46b6b9886854250ddda7484d4ae6f1ed3a6a
+PODFILE CHECKSUM: fd4c082dffebf917a1efe28628271b21c050c89a
 
 COCOAPODS: 1.1.1

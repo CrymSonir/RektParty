@@ -10,6 +10,7 @@ import UIKit
 import GooglePlaces
 import Alamofire
 import JWT
+import SwiftyJSON
 
 class EventViewController: UIViewController {
 
@@ -64,13 +65,28 @@ class EventViewController: UIViewController {
                                       "latitude": placeLatitude,
                                       "token": db.string(forKey: "token")!
         ]
-        Alamofire.request("http://192.168.100.100:4567/event",method: .post, parameters: parameters).responseString { response in
+        Alamofire.request("http://192.168.100.100:4567/event",method: .post, parameters: parameters).responseJSON { response in
             
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
+            if let JSONdata = response.result.value {
+                print("JSON: \(JSONdata)")
+                let event = JSON(JSONdata)
                 
-                let jsonData = try? JSONSerialization.jsonObject(with: JSON.data(using: .utf8)!, options: [])
-                NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: jsonData as! [AnyHashable : Any]?)
+                print(event["name"])
+                
+                print(event["name"].string!)
+                
+                print(event["name"].stringValue)
+                
+                print(event["name"].rawString()!)
+                
+                let eventData: Dictionary<String, String> = [
+                    "id": event["_id"]["$oid"].rawString()!,
+                    "coordinates": event["coordinates"].rawString()!,
+                    "name": event["name"].rawString()!
+                ]
+                print(eventData)
+                
+                NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: eventData)
                 self.dismiss(animated: true)
             }
         }
