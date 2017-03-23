@@ -11,13 +11,14 @@ import Alamofire
 import JWT
 
 class ProfileViewController: UIViewController {
+
     
-    @IBOutlet weak var txtNickName: UITextField!
     @IBOutlet weak var txtMail: UITextField!
-    @IBOutlet weak var dpBirthDate: UIDatePicker!
-    @IBOutlet weak var txtFirstName: UITextField!
-    @IBOutlet weak var txtLastName: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtNickname: UITextField!
+    @IBOutlet weak var dpBirthDate: UIDatePicker!
+    @IBOutlet weak var txtLastName: UITextField!
+    @IBOutlet weak var txtFirstName: UITextField!
     
     
     override func viewDidLoad() {
@@ -26,12 +27,12 @@ class ProfileViewController: UIViewController {
         let db = UserDefaults.standard
         let userData = db.object(forKey: "userData") as! NSDictionary
         self.txtMail.text = (userData["mail"] as! String)
-        self.txtNickName.text = (userData["pseudo"] as! String)
+        self.txtNickname.text = (userData["pseudo"] as! String)
         self.txtFirstName.text = (userData["firstName"] as! String)
         self.txtLastName.text = (userData["lastName"] as! String)
         //print(userData["birthDate"]!)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/mm/yyyy" //Your date format
+        dateFormatter.dateFormat = "dd/MM/yyyy" //Your date format
         let dateFormated = dateFormatter.date(from: userData["birthDate"] as! String)
         //print(dateFromated!)
         self.dpBirthDate.date = dateFormated!
@@ -46,34 +47,32 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func editProfile(_ sender: UIButton) {
-        
         let db = UserDefaults.standard
         let token = db.string(forKey: "token")
-        print("token" + token!)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/mm/yyyy"
+        dateFormatter.dateFormat = "dd/MM/yyyy"
         let dateString = dateFormatter.string(from: dpBirthDate.date)
+        print("password : " + txtPassword.text!)
         var parameters: Parameters;
         if txtPassword.text != "" {
+            print("password")
             parameters = ["mail": txtMail.text!, "password": txtPassword.text!,
                           "firstName": txtFirstName.text!,"lastName": txtLastName.text!,
-                          "birthDate": dateString,"pseudo": txtNickName.text!,"token": token!];
-            print("here")
+                          "birthDate": dateString,"pseudo": txtNickname.text!,"token": token!];
+            
         }else{
+            print("no password")
             parameters = ["mail": txtMail.text!,
                           "firstName": txtFirstName.text!,"lastName": txtLastName.text!,
-                          "birthDate": dateString,"pseudo": txtNickName.text!,"token":token!];
+                          "birthDate": dateString,"pseudo": txtNickname.text!,"token":token!];
         }
-        print(parameters)
         Alamofire.request("http://192.168.100.100:4567/user",method: .put, parameters: parameters).responseString { response in
             
             if let JSON = response.result.value {
-                print("JSON: \(JSON)")
                 do {
                     // let allo:String = JSON as! String
                     let db = UserDefaults.standard
                     let result = try JWT.decode(JSON, algorithm: .hs256("my$ecretK3y".data(using: .utf8)!))
-                    print(result)
                     let userData = [
                         "pseudo":result["pseudo"],
                         "birthDate":result["birthDate"],
@@ -86,23 +85,18 @@ class ProfileViewController: UIViewController {
                     db.set(JSON, forKey: "token")
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
-                    self.dismiss(animated: true)
+                    let prompt = UIAlertController(title: "Modification réussi", message: "Modification réussi", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "ok", style: .default, handler: nil)
+                    prompt.addAction(action)
+                    self.present(prompt, animated: true)
+                    self.viewDidLoad()
                     
                 } catch {
                     print("ERROR TOKEN : \(error)")
                 }
             }
         }
+        
+
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    
 }

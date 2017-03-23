@@ -44,7 +44,7 @@
         <!--Profile-->
         <scene sceneID="kDF-lw-Imm">
             <objects>
-                <viewController id="D1G-2G-JPa" sceneMemberID="viewController">
+                <viewController id="D1G-2G-JPa" customClass="ProfileViewController" customModule="RektParty" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9XN-g7-zWz"/>
                         <viewControllerLayoutGuide type="bottom" id="QVe-QN-cdk"/>
@@ -138,6 +138,9 @@
                                 <state key="normal" title="Save changes">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="editProfile:" destination="D1G-2G-JPa" eventType="touchUpInside" id="HHh-Ia-ZDZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -177,6 +180,14 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="contactIcon" id="1ac-tl-Siv"/>
+                    <connections>
+                        <outlet property="dpBirthDate" destination="rKj-94-dPw" id="QIa-46-vDh"/>
+                        <outlet property="txtFirstName" destination="Iwd-1W-vHt" id="QKx-aE-bsl"/>
+                        <outlet property="txtLastName" destination="osv-h3-zOD" id="DPB-2o-c5K"/>
+                        <outlet property="txtMail" destination="jvm-h0-BlC" id="la5-vb-NVy"/>
+                        <outlet property="txtNickname" destination="4CZ-dj-dWN" id="ocV-nS-e02"/>
+                        <outlet property="txtPassword" destination="fFr-fO-KdO" id="nuX-XA-82z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bB2-Ao-gsg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
