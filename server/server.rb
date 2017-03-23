@@ -88,9 +88,12 @@ end
 get '/events' do
   time = Time.new
   puts "coucou"+ time.strftime("%d/%m/%Y")
-  Event.find_by(private: false) do |events|
-    halt 200, events.to_json
-
+  events = []
+  Event.where(private: "0").each do |event|
+    events.push(event.to_json)
+  end
+  if(events.length > 0)
+    halt 200, events
   end
   halt 500, "Event not found"
 end
@@ -147,24 +150,28 @@ end
 put '/user' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
-  User.find_by(_id: decoded_token["_id"]) do |user|
-    if (defined?(params[:mail])).nil?
-      user.set(:mail, params[:mail])
+
+  puts decoded_token["mail"]
+  User.find_by(mail: decoded_token["mail"]) do |user|
+    puts user
+    puts params
+    if (params[:mail])
+      user.update_attribute(:mail, params[:mail])
     end
-    if (defined?(params[:pseudo])).nil?
-      user.set(:pseudo, params[:pseudo])
+    if (params[:pseudo])
+      user.update_attribute(:pseudo, params[:pseudo])
     end
-    if (defined?(params[:password])).nil?
-      user.set(:password, params[:password])
+    if (params[:password])
+      user.update_attribute(:password, params[:password])
     end
-    if (defined?(params[:birthDate])).nil?
-      user.set(:birthDate, params[:birthDate])
+    if (params[:birthDate])
+      user.update_attribute(:birthDate, params[:birthDate])
     end
-    if (defined?(params[:firstName])).nil?
-      user.set(:firstName, params[:firstName])
+    if (params[:firstName])
+      user.update_attribute(:firstName, params[:firstName])
     end
-    if (defined?(params[:lastName])).nil?
-      user.set(:lastName, params[:lastName])
+    if (params[:lastName])
+      user.update_attribute(:lastName, params[:lastName])
     end
 
     User.find_by(_id: user._id) do |modifiedUser|
