@@ -82,18 +82,17 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     func getMarkers(){
         // TODO GET CREATED MARKER BY USER
 
-//        let db = UserDefaults.standard
-//        let parameters: Parameters = ["token": db.string(forKey: "token")!]
-//        Alamofire.request("http://192.168.100.100:4567/event/all",method: .get, parameters: parameters).responseString { response in
-//            
-//            if let JSON = response.result.value {
-//                print("JSON: \(JSON)")
-//                
-//                let jsonData = try? JSONSerialization.jsonObject(with: JSON.data(using: .utf8)!, options: [])
-//                NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: jsonData as! [AnyHashable : Any]?)
-//                self.dismiss(animated: true)
-//            }
-//        }
+        let db = UserDefaults.standard
+        let parameters: Parameters = ["token": db.string(forKey: "token")!]
+        Alamofire.request("http://192.168.100.100:4567/events",method: .get, parameters: parameters).responseJSON { response in
+            if let JSON = response.result.value as? NSArray{
+                print(JSON)
+                for event in JSON {
+                    var eventDic = event as! Dictionary<String, Any>
+                    self.AddMarkerToMap(coordinates: eventDic["coordinates"] as! String, eventName: eventDic["name"] as! String)
+                }
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -113,17 +112,29 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
 
     func AddEventToMap(notification: Notification){
         //Take Action on Notification
-        print(notification.userInfo!["_id"]!)
-        let stringCoordinates = (notification.userInfo!["coordinates"] as! String).components(separatedBy: "|")
+        let marker: GMSMarker = AddMarkerToMap(coordinates: notification.userInfo!["coordinates"] as! String, eventName: (notification.userInfo!["name"] as? String)!)
+        self.mapView.selectedMarker = marker
+        self.mapView.animate(toLocation: marker.position)
+  /*      let alertMessage = UIAlertController(title: "My Title", message: "My Message", preferredStyle: .alert)
+        
+        let image = UIImage(named: "myImage")
+        var action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        action.setValue(image, forKey: "image")
+        alertMessage .addAction(action)
+        
+        self.presentViewController(alertMessage, animated: true, completion: nil)*/
+    }
+    
+    func AddMarkerToMap(coordinates: String, eventName: String) -> GMSMarker {
+        let stringCoordinates = (coordinates).components(separatedBy: "|")
         let markerPosition = CLLocationCoordinate2DMake(Double(stringCoordinates[0])!, Double(stringCoordinates[1])!)
         let marker = GMSMarker(position: markerPosition)
-        marker.title = notification.userInfo!["name"] as? String
+        marker.title = eventName
         marker.icon = UIImage(named: "marker")
         markersList.append(marker)
         marker.map = self.mapView
-        self.mapView.selectedMarker = marker
-        self.mapView.animate(toLocation: markerPosition)
-
+        
+        return marker
     }
 
 }
