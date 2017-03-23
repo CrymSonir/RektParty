@@ -225,11 +225,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XqI-KZ-X5F" customClass="GMSMapView">
-                                <rect key="frame" x="-4" y="64" width="383" height="554"/>
+                                <rect key="frame" x="-4" y="64" width="383" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IId-bU-Uem" customClass="RoundButton" customModule="RektParty" customModuleProvider="target">
-                                <rect key="frame" x="314" y="483" width="55" height="55"/>
+                                <rect key="frame" x="314" y="532" width="55" height="55"/>
                                 <color key="backgroundColor" red="0.35168632862384808" green="0.67550563731313762" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="0C1-uw-UKC"/>
@@ -290,7 +290,7 @@
                         <outlet property="addMarkerBtn" destination="IId-bU-Uem" id="IKM-v3-2MK"/>
                         <outlet property="mapView" destination="XqI-KZ-X5F" id="W1I-jm-4z5"/>
                         <outlet property="mapViewContainer" destination="Zz1-fg-BIN" id="B96-fe-x8B"/>
-                        <segue destination="sb5-5E-RWp" kind="presentation" identifier="loginView" id="mbo-Hf-8Go"/>
+                        <segue destination="sb5-5E-RWp" kind="show" identifier="loginView" id="s9B-RG-TeA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -556,11 +556,12 @@
                     <connections>
                         <outlet property="textFieldMail" destination="1a4-ko-0Mx" id="QVN-2n-UCe"/>
                         <outlet property="textFieldPassword" destination="W36-0X-NJc" id="98y-fL-P7t"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="mapView" id="lk2-dZ-Wc4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ud-e5-jP7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2904.8000000000002" y="850.52473763118451"/>
+            <point key="canvasLocation" x="2788" y="851"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="23p-f6-tWZ">
@@ -745,4 +746,7 @@
         <image name="logoutIcon" width="24" height="24"/>
         <image name="mapIcon" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lk2-dZ-Wc4"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
                     NotificationCenter.default.post(name: Notification.Name("ShowMap"), object: nil, userInfo: nil)
-                    self.dismiss(animated: true)
+                    self.performSegue(withIdentifier: "mapView", sender: self)
                     
                 } catch {
                     print("ERROR TOKEN : \(error)")

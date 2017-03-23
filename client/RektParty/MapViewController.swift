@@ -38,40 +38,43 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         let db = UserDefaults.standard
         if (db.object(forKey: "isLog") as? Bool) == nil {
             mapViewContainer.isHidden = true
-        }
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.AddEventToMap(notification:)),
-            name: Notification.Name("AddEventToMap"),
-            object: nil)
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.ShowMap(notification:)),
-            name: Notification.Name("ShowMap"),
-            object: nil)
-        
-        addMarkerBtn.layer.shadowColor = UIColor.black.cgColor
-        addMarkerBtn.layer.shadowOpacity = 0.7
-        addMarkerBtn.layer.shadowOffset = CGSize.zero
-        addMarkerBtn.layer.shadowRadius = 2
-        
-        mapView.isMyLocationEnabled = true
-        mapView.settings.myLocationButton = true
-        mapView.delegate = self
-        
-        // The myLocation attribute of the mapView may be null
-        if let mylocation = mapView.myLocation {
-            print("User's location: \(mylocation)")
-            //Location Manager code to fetch current location
+            self.performSegue(withIdentifier: "loginView", sender: self)
         } else {
-            print("User's location is unknown")
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.AddEventToMap(notification:)),
+                name: Notification.Name("AddEventToMap"),
+                object: nil)
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.ShowMap(notification:)),
+                name: Notification.Name("ShowMap"),
+                object: nil)
+            
+            addMarkerBtn.layer.shadowColor = UIColor.black.cgColor
+            addMarkerBtn.layer.shadowOpacity = 0.7
+            addMarkerBtn.layer.shadowOffset = CGSize.zero
+            addMarkerBtn.layer.shadowRadius = 2
+            
+            mapView.isMyLocationEnabled = true
+            mapView.settings.myLocationButton = true
+            mapView.delegate = self
+            
+            // The myLocation attribute of the mapView may be null
+            if let mylocation = mapView.myLocation {
+                print("User's location: \(mylocation)")
+                //Location Manager code to fetch current location
+            } else {
+                print("User's location is unknown")
+            }
+            
+            self.locationManager.delegate = self
+            self.locationManager.startUpdatingLocation()
+            
+            getMarkers()
+
         }
-        
-        self.locationManager.delegate = self
-        self.locationManager.startUpdatingLocation()
-        
-        getMarkers()
     }
     
     override func didReceiveMemoryWarning() {
