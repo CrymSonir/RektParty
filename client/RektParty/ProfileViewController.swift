@@ -85,6 +85,10 @@ class ProfileViewController: UIViewController {
                     db.set(JSON, forKey: "token")
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
+                    let prompt = UIAlertController(title: "Modification réussi", message: "Modification réussi", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "ok", style: .default, handler: nil)
+                    prompt.addAction(action)
+                    self.present(prompt, animated: true)
                     self.viewDidLoad()
                     
                 } catch {
