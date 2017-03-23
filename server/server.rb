@@ -68,7 +68,8 @@ post '/login' do
 end
 
 get '/event' do
-  Event.find(params[:_id]) do |event|
+  event = Event.find(params[:_id])
+  if(event)
     halt 200, event.to_json
   end
   halt 500, "Event not found"
@@ -78,16 +79,17 @@ get '/event/all' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
   User.find_by(mail: decoded_token["mail"]) do |user|
-    Event.find(user.event_ids) do |events|
+    events = Event.find(user.events)
+    if(events && events.length)
       halt 200, events.to_json
     end
   end
-  halt 500, "Event not found"
+  halt 500, "Events not found"
 end
 
 get '/events' do
   time = Time.new
-  puts "coucou"+ time.strftime("%d/%m/%Y")
+  puts "should be good " + time.strftime("%d/%m/%Y")
   events = []
   Event.where(private: "0").each do |event|
     events.push(event)
@@ -152,7 +154,7 @@ end
 
 delete '/event' do
   begin
-    result = Event.find(params[:_id]).delete
+    result = Event.find_by(_id: params[:_id]).delete
     if result
       halt 200
     else
@@ -168,10 +170,13 @@ put '/event/join' do
   decoded_token = decoded_token[0]
 
   User.find_by(mail: decoded_token["mail"]) do |user|
-    Event.find_by(_id: params[:_id]) do |event|
+    event = Event.find_by(_id: params[:_id])
+    if(event)
       event.users.push(user)
+      halt 200
     end
   end
+  halt 500, "Join event error"
 end
 
 put '/event/leave' do
