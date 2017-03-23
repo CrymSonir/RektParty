@@ -17,6 +17,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var birthDate: UIDatePicker!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,11 +36,8 @@ class RegisterViewController: UIViewController {
     @IBAction func onClickRegister(_ sender: UIButton) {
         var userData = [String: String]()
         
-        print(self.mail != nil)
-        
         if ( self.mail != nil && self.nickName != nil && self.firstName !=  nil
             && self.password != nil && self.birthDate != nil && self.lastName != nil && self.password != nil ) {
-            print("toto")
             userData["mail"] = self.mail.text!
             userData["password"] = self.password.text!
             userData["pseudo"] = self.nickName.text!
@@ -55,9 +53,9 @@ class RegisterViewController: UIViewController {
                 let jsonData = try! JSONSerialization.data(withJSONObject: userData, options: JSONSerialization.WritingOptions.prettyPrinted)
                 
                 //Convert back to string. Usually only do this for debugging
-                if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
-                    print(JSONString)
-                }
+//                if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
+//                    print(JSONString)
+//                }
                 
                 //In production, you usually want to try and cast as the root data structure. Here we are casting as a dictionary. If the root object is an array cast as [AnyObject].
                 let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: AnyObject]

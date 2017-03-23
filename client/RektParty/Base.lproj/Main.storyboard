@@ -716,6 +716,14 @@
                             <constraint firstItem="OFj-1t-qZW" firstAttribute="top" secondItem="WdH-zF-zFQ" secondAttribute="bottom" constant="10" id="zgh-13-cQh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="birthDate" destination="OFj-1t-qZW" id="AUM-dR-Qha"/>
+                        <outlet property="firstName" destination="nNY-Z8-aMp" id="JcZ-2j-feg"/>
+                        <outlet property="lastName" destination="NZ1-Q2-J2t" id="uDb-eE-MyZ"/>
+                        <outlet property="mail" destination="R9d-4s-ZXf" id="BT0-bm-KVf"/>
+                        <outlet property="nickName" destination="LY5-mN-xqD" id="e3a-x1-0BZ"/>
+                        <outlet property="password" destination="vxm-Ma-pfN" id="NMc-Uk-VBP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="635-LZ-fNl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
