@@ -12,5 +12,6 @@ target 'RektParty' do
   pod 'GooglePlacePicker'
   pod 'Alamofire', '~> 4.4'
   pod 'JSONWebToken'
+  pod 'SwiftyJSON'
 
 end

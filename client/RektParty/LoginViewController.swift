@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
                     db.set(JWTtoken, forKey: "token")
                     db.set(true, forKey: "isLog")
                     db.set(userData, forKey: "userData")
+                    NotificationCenter.default.post(name: Notification.Name("ShowMap"), object: nil, userInfo: nil)
                     self.dismiss(animated: true)
                     
                 } catch {
