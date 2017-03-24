@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0AAD581E8570E600E66862 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0AAD571E8570E600E66862 /* EventsViewController.swift */; };
 		7D51A1CF1E854891009F82EE /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D51A1CE1E854891009F82EE /* EventDetailViewController.swift */; };
 		7D51A1D11E855171009F82EE /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D51A1D01E855171009F82EE /* Event.swift */; };
 		7D51A1D31E8556A6009F82EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D51A1D21E8556A6009F82EE /* User.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		09267DF167C1B6FB22F63977 /* Pods-RektParty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RektParty.release.xcconfig"; path = "Pods/Target Support Files/Pods-RektParty/Pods-RektParty.release.xcconfig"; sourceTree = "<group>"; };
+		7D0AAD571E8570E600E66862 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		7D51A1CE1E854891009F82EE /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		7D51A1D01E855171009F82EE /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		7D51A1D21E8556A6009F82EE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				7DE8DEBC1E841C7B00655EAB /* CustomGmapInfoWindow.xib */,
 				7DE8DEBE1E841E6400655EAB /* CustomGmapInfoWindow.swift */,
 				7D51A1CE1E854891009F82EE /* EventDetailViewController.swift */,
+				7D0AAD571E8570E600E66862 /* EventsViewController.swift */,
 			);
 			path = RektParty;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				7DB9889D1E813E70000870A9 /* EventViewController.swift in Sources */,
 				7D51A1CF1E854891009F82EE /* EventDetailViewController.swift in Sources */,
 				7D51A1D11E855171009F82EE /* Event.swift in Sources */,
+				7D0AAD581E8570E600E66862 /* EventsViewController.swift in Sources */,
 				7DB88DC81E7FD95F008814EC /* LoginViewController.swift in Sources */,
 				7D90B9C61E82B035005A2869 /* RegisterViewController.swift in Sources */,
 				7DFFE48C1E8180A2009FB8EF /* ProfileViewController.swift in Sources */,

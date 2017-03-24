@@ -54,6 +54,12 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
                 name: Notification.Name("ShowMap"),
                 object: nil)
             
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.GoToEvent(notification:)),
+                name: Notification.Name("GoToEvent"),
+                object: nil)
+            
             addMarkerBtn.layer.shadowColor = UIColor.black.cgColor
             addMarkerBtn.layer.shadowOpacity = 0.7
             addMarkerBtn.layer.shadowOffset = CGSize.zero
@@ -187,6 +193,14 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         }
     }
     
+    func GoToEvent(notification: Notification){
+        
+        let theMarker = SearchMarkerById(idMarker: (notification.userInfo!["id"] as! String))
+        mapView.selectedMarker = theMarker
+        mapView.animate(toLocation: theMarker.position)
+        
+    }
+    
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         return UIView()
     }
@@ -216,6 +230,16 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         customInfoWindow.removeFromSuperview()
+    }
+    
+    func SearchMarkerById(idMarker:String) -> GMSMarker {
+        var theMarker:GMSMarker? = nil
+        for marker in markersList{
+            if (marker.userData as! Dictionary<String,String>)["_id"] == idMarker{
+                theMarker = marker
+            }
+        }
+        return theMarker!
     }
     
 }
