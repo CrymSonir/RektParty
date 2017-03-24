@@ -27,8 +27,7 @@ Créer un groupe ( NoTime )
 Editer un groupe ( NoTime )
 Supprimer un groupe ( NoTime )
 
-Lien du repo ( VagrantFile and box for ruby server )
-https://drive.google.com/open?id=0B_jB5rVywlRmWDBOU29hSXhlZVE
+Lien du repo ( VagrantFile and box for ruby server ) - voir mail
 
 Pour boot le server : 
 vagrant up 
