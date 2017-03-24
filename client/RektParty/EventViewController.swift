@@ -68,27 +68,20 @@ class EventViewController: UIViewController {
         Alamofire.request("http://192.168.100.100:4567/event",method: .post, parameters: parameters).responseJSON { response in
             
             if let JSONdata = response.result.value {
-                print("JSON: \(JSONdata)")
                 let event = JSON(JSONdata)
-     
                 let eventData: Dictionary<String, String> = [
                     "id": event["_id"]["$oid"].rawString()!,
                     "coordinates": event["coordinates"].rawString()!,
                     "name": event["name"].rawString()!
                 ]
-                print(eventData)
-                
+
                 NotificationCenter.default.post(name: Notification.Name("AddEventToMap"), object: nil, userInfo: eventData)
 
                 let prompt = UIAlertController(title: "Success", message: "Votre event a bien été crée", preferredStyle: UIAlertControllerStyle.alert)
                 self.present(prompt, animated: true,completion: nil)
                 prompt.addAction(UIAlertAction(title: "validate", style: .default, handler: { action in
-                    
-                    //self.performSegue(withIdentifier: "backToMap", sender: self)
                     self.dismiss(animated: true)
-                    //self.present(self.mapViewController!, animated: true, completion: nil!)
                 }))
-
             }
         }
     }
@@ -129,11 +122,6 @@ extension EventViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        // Print place info to the console.
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
-        print("place coordinate: \(place.coordinate)")
         
         self.placeLatitude = String(place.coordinate.latitude)
         self.placeLongitude = String(place.coordinate.longitude)

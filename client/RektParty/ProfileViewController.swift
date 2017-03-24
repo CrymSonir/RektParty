@@ -30,11 +30,9 @@ class ProfileViewController: UIViewController {
         self.txtNickname.text = (userData["pseudo"] as! String)
         self.txtFirstName.text = (userData["firstName"] as! String)
         self.txtLastName.text = (userData["lastName"] as! String)
-        //print(userData["birthDate"]!)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy" //Your date format
         let dateFormated = dateFormatter.date(from: userData["birthDate"] as! String)
-        //print(dateFromated!)
         self.dpBirthDate.date = dateFormated!
         
         // Do any additional setup after loading the view.
@@ -52,16 +50,13 @@ class ProfileViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let dateString = dateFormatter.string(from: dpBirthDate.date)
-        print("password : " + txtPassword.text!)
         var parameters: Parameters;
         if txtPassword.text != "" {
-            print("password")
             parameters = ["mail": txtMail.text!, "password": txtPassword.text!,
                           "firstName": txtFirstName.text!,"lastName": txtLastName.text!,
                           "birthDate": dateString,"pseudo": txtNickname.text!,"token": token!];
             
         }else{
-            print("no password")
             parameters = ["mail": txtMail.text!,
                           "firstName": txtFirstName.text!,"lastName": txtLastName.text!,
                           "birthDate": dateString,"pseudo": txtNickname.text!,"token":token!];

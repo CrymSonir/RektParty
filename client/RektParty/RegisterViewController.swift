@@ -52,12 +52,6 @@ class RegisterViewController: UIViewController {
                 //Convert to Data
                 let jsonData = try! JSONSerialization.data(withJSONObject: userData, options: JSONSerialization.WritingOptions.prettyPrinted)
                 
-                //Convert back to string. Usually only do this for debugging
-//                if let JSONString = String(data: jsonData, encoding: String.Encoding.utf8) {
-//                    print(JSONString)
-//                }
-                
-                //In production, you usually want to try and cast as the root data structure. Here we are casting as a dictionary. If the root object is an array cast as [AnyObject].
                 let json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: AnyObject]
                 Alamofire.request("http://192.168.100.100:4567/register", method: .post, parameters: json)
                     .responseJSON { response in
