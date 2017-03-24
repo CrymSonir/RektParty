@@ -75,6 +75,14 @@ get '/event' do
   halt 500, "Event not found"
 end
 
+get '/user' do
+  user = User.find(params[:_id])
+  if(event)
+    halt 200, user.to_json
+  end
+  halt 500, "Event not found"
+end
+
 get '/event/all' do
   decoded_token = JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' }
   decoded_token = decoded_token[0]
