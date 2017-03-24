@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7D83B1C41E801C4C0001F601 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D83B1C31E801C4C0001F601 /* RoundButton.swift */; };
 		7D90B9C61E82B035005A2869 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D90B9C51E82B035005A2869 /* RegisterViewController.swift */; };
+		7DB7953B1E841B0600A66F57 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB7953A1E841B0600A66F57 /* EventsViewController.swift */; };
+		7DB7953D1E84212A00A66F57 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB7953C1E84212A00A66F57 /* Event.swift */; };
 		7DB88DC61E7FD95F008814EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB88DC51E7FD95F008814EC /* AppDelegate.swift */; };
 		7DB88DC81E7FD95F008814EC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB88DC71E7FD95F008814EC /* LoginViewController.swift */; };
 		7DB88DCB1E7FD95F008814EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB88DC91E7FD95F008814EC /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 		09267DF167C1B6FB22F63977 /* Pods-RektParty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RektParty.release.xcconfig"; path = "Pods/Target Support Files/Pods-RektParty/Pods-RektParty.release.xcconfig"; sourceTree = "<group>"; };
 		7D83B1C31E801C4C0001F601 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		7D90B9C51E82B035005A2869 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7DB7953A1E841B0600A66F57 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		7DB7953C1E84212A00A66F57 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		7DB88DC21E7FD95F008814EC /* RektParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RektParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB88DC51E7FD95F008814EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DB88DC71E7FD95F008814EC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 		7D90B9C41E827E45005A2869 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7DB7953C1E84212A00A66F57 /* Event.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 				7D90B9C51E82B035005A2869 /* RegisterViewController.swift */,
 				7DB9889C1E813E70000870A9 /* EventViewController.swift */,
 				7DFFE48B1E8180A2009FB8EF /* ProfileViewController.swift */,
+				7DB7953A1E841B0600A66F57 /* EventsViewController.swift */,
 			);
 			path = RektParty;
 			sourceTree = "<group>";
@@ -243,6 +249,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D83B1C41E801C4C0001F601 /* RoundButton.swift in Sources */,
+				7DB7953D1E84212A00A66F57 /* Event.swift in Sources */,
+				7DB7953B1E841B0600A66F57 /* EventsViewController.swift in Sources */,
 				7DB9889D1E813E70000870A9 /* EventViewController.swift in Sources */,
 				7DB88DC81E7FD95F008814EC /* LoginViewController.swift in Sources */,
 				7D90B9C61E82B035005A2869 /* RegisterViewController.swift in Sources */,
