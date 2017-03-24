@@ -21,6 +21,8 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
 
     var markersList: [GMSMarker] = []
     
+    var customInfoWindow = Bundle.main.loadNibNamed("CustomGmapInfoWindow", owner: self, options: nil)?[0] as! CustomGmapInfoWindow
+    var tappedMarker = GMSMarker()
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     var placesClient: GMSPlacesClient!
@@ -89,9 +91,7 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude:(location?.coordinate.longitude)!, zoom:14)
         mapView.animate(to: camera)
         
-        //Finally stop updating location otherwise it will come again and again in this delegate
         self.locationManager.stopUpdatingLocation()
-        
     }
     
     /// GetMarkers from API
@@ -148,15 +148,76 @@ class MapViewController: UIViewController, GMSMapViewDelegate, CLLocationManager
         return marker
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        mapView.selectedMarker = marker
-        mapView.animate(toLocation: marker.position)
-        if marker.title == "myMarker"{
-            print("handle specific marker")
+    func buttonDeleteTapped(_ sender: UIButton!) {
+        let db = UserDefaults.standard
+        print(tappedMarker)
+        let parameters: Parameters = ["token": db.string(forKey: "token")!, "_id": (tappedMarker.userData as! Dictionary<String, String>)["_id"]!]
+        Alamofire.request("http://192.168.100.100:4567/event",method: .delete, parameters: parameters).responseString { response in
+            if let JSONdata = response.result.value {
+                if response.response?.statusCode != 200 {
+                    print("Error while deleting event")
+                }else{
+                    self.customInfoWindow.removeFromSuperview()
+                    self.tappedMarker.map = nil
+                }
+            }
         }
-        return true
+    }
+    
+    func buttonDetailTapped(_ sender: UIButton!) {
+        let eventDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "EventDetailViewController") as! EventDetailViewController
+        let eventDetailId = (tappedMarker.userData as! Dictionary<String, String>)["_id"]!
+        
+        loadEventDetail(eventId: eventDetailId) { (event) in
+            eventDetailViewController.event = event
+            self.present(eventDetailViewController, animated: true, completion: nil)
+        }
     }
 
+    func loadEventDetail(eventId: String, completion:@escaping (Event) -> Void){
+        let db = UserDefaults.standard
+        let parameters: Parameters = ["token": db.string(forKey: "token")!, "_id": eventId]
+        Alamofire.request("http://192.168.100.100:4567/event",method: .get, parameters: parameters).responseJSON { response in
+            if let JSONdata = response.result.value{
+                let json = JSON(JSONdata)
+                print(json)
+                let event :Event = Event(id: json["_id"].rawString()!, name: json["name"].rawString()!, dateStart: json["dateStart"].rawString()!, dateEnd: json["dateEnd"].rawString()!, privateP: json["privateP"].rawString()!, status: json["status"].rawString()!, location: json["location"].rawString()!, coordinates: json["coordinates"].rawString()!, organisatorId: json["organisatorId"].rawString()!)
+                completion(event)
+            }
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        return UIView()
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        let location = CLLocationCoordinate2D(latitude: marker.position.latitude, longitude: marker.position.longitude)
+        
+        tappedMarker = marker
+        customInfoWindow.removeFromSuperview()
+        customInfoWindow = Bundle.main.loadNibNamed("CustomGmapInfoWindow", owner: self, options: nil)?[0] as! CustomGmapInfoWindow
+        customInfoWindow.title.text = marker.title
+        customInfoWindow.center = mapView.projection.point(for: location)
+        customInfoWindow.deleteBtn.addTarget(self, action: #selector(buttonDeleteTapped(_:)), for: .touchUpInside)
+        customInfoWindow.detailBtn.addTarget(self, action: #selector(buttonDetailTapped(_:)), for: .touchUpInside)
+        self.view.addSubview(customInfoWindow)
+
+        return false
+    }
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        if (tappedMarker.userData != nil){
+            let location = CLLocationCoordinate2D(latitude: tappedMarker.position.latitude, longitude: tappedMarker.position.longitude)
+            customInfoWindow.center = mapView.projection.point(for: location)
+            customInfoWindow.center.y -= 60
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        customInfoWindow.removeFromSuperview()
+    }
+    
 }
 
 

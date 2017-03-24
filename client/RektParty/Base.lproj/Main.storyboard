@@ -193,6 +193,144 @@
             </objects>
             <point key="canvasLocation" x="1862" y="-319"/>
         </scene>
+        <!--Event Detail View Controller-->
+        <scene sceneID="4dV-ce-HmR">
+            <objects>
+                <viewController storyboardIdentifier="EventDetailViewController" id="Yzr-nU-8On" customClass="EventDetailViewController" customModule="RektParty" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yey-7t-cvD"/>
+                        <viewControllerLayoutGuide type="bottom" id="CRg-AB-fFR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Izs-SM-dgZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name your event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YzY-K6-ZUo">
+                                <rect key="frame" x="26" y="66" width="130" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Insert your event name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="xVp-cO-Xap">
+                                <rect key="frame" x="26" y="97" width="323" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="eventNameEditingChanged:" destination="KaG-Pg-Frz" eventType="editingChanged" id="Z7C-YT-w6v"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GQ-EH-FxG">
+                                <rect key="frame" x="26" y="137" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type in your event address" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Kqf-0k-LMg">
+                                <rect key="frame" x="26" y="168" width="323" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type in your event address" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="n00-zO-dmy">
+                                <rect key="frame" x="26" y="237" width="323" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHe-aG-uta">
+                                <rect key="frame" x="26" y="208" width="77" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXV-gW-YY1">
+                                <rect key="frame" x="26" y="285" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXw-eE-NzS">
+                                <rect key="frame" x="113" y="394" width="150" height="30"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="0.3294117647" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="eoM-2a-d2x"/>
+                                </constraints>
+                                <state key="normal" title="Join event !">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnJoinEventTouchUp:" destination="Yzr-nU-8On" eventType="touchUpInside" id="3lP-4b-xdf"/>
+                                    <action selector="eventNameValueChanged:" destination="KaG-Pg-Frz" eventType="valueChanged" id="Nec-gR-ZUN"/>
+                                    <action selector="saveYourEventTouchUp:" destination="KaG-Pg-Frz" eventType="touchUpInside" id="y2B-fO-Fbk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McF-hL-as1">
+                                <rect key="frame" x="332" y="25" width="32" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="closeBtnIcon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCloseModalTouchUp:" destination="KaG-Pg-Frz" eventType="touchUpInside" id="33A-7Q-fua"/>
+                                    <action selector="btnCloseModalTouchUp:" destination="Yzr-nU-8On" eventType="touchUpInside" id="I3t-5n-GhL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti6-Lk-Plp">
+                                <rect key="frame" x="139" y="30" width="98" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type in your event address" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="INJ-4V-2Nt">
+                                <rect key="frame" x="26" y="314" width="323" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YzY-K6-ZUo" firstAttribute="leading" secondItem="Izs-SM-dgZ" secondAttribute="leadingMargin" constant="10" id="0Rc-Yb-iA1"/>
+                            <constraint firstItem="ti6-Lk-Plp" firstAttribute="centerX" secondItem="Izs-SM-dgZ" secondAttribute="centerX" id="0dj-gg-mUn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="INJ-4V-2Nt" secondAttribute="trailing" constant="10" id="5iV-gZ-HkV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="n00-zO-dmy" secondAttribute="trailing" constant="10" id="8ck-cy-FVG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kqf-0k-LMg" secondAttribute="trailing" constant="10" id="9aB-aG-Wgx"/>
+                            <constraint firstItem="NHe-aG-uta" firstAttribute="leading" secondItem="Izs-SM-dgZ" secondAttribute="leadingMargin" constant="10" id="CGR-i9-QJ7"/>
+                            <constraint firstItem="INJ-4V-2Nt" firstAttribute="top" secondItem="zXV-gW-YY1" secondAttribute="bottom" constant="8" id="DaA-2c-Cju"/>
+                            <constraint firstItem="8GQ-EH-FxG" firstAttribute="top" secondItem="xVp-cO-Xap" secondAttribute="bottom" constant="10" id="HV8-8G-jT4"/>
+                            <constraint firstItem="Kqf-0k-LMg" firstAttribute="leading" secondItem="Izs-SM-dgZ" secondAttribute="leadingMargin" constant="10" id="IuX-ob-pr0"/>
+                            <constraint firstItem="INJ-4V-2Nt" firstAttribute="leading" secondItem="Izs-SM-dgZ" secondAttribute="leadingMargin" constant="10" id="KPR-dM-RRI"/>
+                            <constraint firstItem="RXw-eE-NzS" firstAttribute="top" secondItem="INJ-4V-2Nt" secondAttribute="bottom" constant="50" id="OEw-jx-WaM"/>
+                            <constraint firstItem="RXw-eE-NzS" firstAttribute="centerX" secondItem="Izs-SM-dgZ" secondAttribute="centerX" id="Ovh-rM-crg"/>
+                            <constraint firstItem="n00-zO-dmy" firstAttribute="top" secondItem="NHe-aG-uta" secondAttribute="bottom" constant="8" id="Q3j-uf-TK8"/>
+                            <constraint firstItem="YzY-K6-ZUo" firstAttribute="top" secondItem="ti6-Lk-Plp" secondAttribute="bottom" constant="15" id="QFc-0n-2j2"/>
+                            <constraint firstItem="n00-zO-dmy" firstAttribute="leading" secondItem="Izs-SM-dgZ" secondAttribute="leadingMargin" constant="10" id="RVW-BJ-fjM"/>
+                            <constraint firstItem="NHe-aG-uta" firstAttribute="top" secondItem="Kqf-0k-LMg" secondAttribute="bottom" constant="10" id="Smk-Gp-F2c"/>
+                            <constraint firstItem="zXV-gW-YY1" firstAttribute="leading" secondItem="Izs-SM-dgZ" secondAttribute="leadingMargin" constant="10" id="YFu-0i-ICy"/>
+                            <constraint firstItem="McF-hL-as1" firstAttribute="top" secondItem="yey-7t-cvD" secondAttribute="bottom" constant="5" id="ati-jd-MAN"/>
+                            <constraint firstItem="Kqf-0k-LMg" firstAttribute="top" secondItem="8GQ-EH-FxG" secondAttribute="bottom" constant="10" id="cLe-0f-epP"/>
+                            <constraint firstItem="xVp-cO-Xap" firstAttribute="top" secondItem="YzY-K6-ZUo" secondAttribute="bottom" constant="10" id="d4E-QP-J4A"/>
+                            <constraint firstItem="xVp-cO-Xap" firstAttribute="leading" secondItem="Izs-SM-dgZ" secondAttribute="leadingMargin" constant="10" id="dCt-5l-cRT"/>
+                            <constraint firstItem="8GQ-EH-FxG" firstAttribute="leading" secondItem="Izs-SM-dgZ" secondAttribute="leadingMargin" constant="10" id="ll9-L3-88J"/>
+                            <constraint firstItem="McF-hL-as1" firstAttribute="trailing" secondItem="Izs-SM-dgZ" secondAttribute="trailingMargin" constant="5" id="mP2-SQ-d3e"/>
+                            <constraint firstItem="zXV-gW-YY1" firstAttribute="top" secondItem="n00-zO-dmy" secondAttribute="bottom" constant="18" id="tXl-rm-tPD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xVp-cO-Xap" secondAttribute="trailing" constant="10" id="tem-fF-bOt"/>
+                            <constraint firstItem="ti6-Lk-Plp" firstAttribute="top" secondItem="yey-7t-cvD" secondAttribute="bottom" constant="10" id="xPU-wB-EZE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="eventAddress" destination="Kqf-0k-LMg" id="pMq-oB-raV"/>
+                        <outlet property="eventEndDate" destination="INJ-4V-2Nt" id="PLl-oL-I0C"/>
+                        <outlet property="eventName" destination="xVp-cO-Xap" id="AZb-ar-nuF"/>
+                        <outlet property="eventStartDate" destination="n00-zO-dmy" id="3iq-Kl-fdp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bgv-Me-zU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2905" y="-671"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Buk-Sv-p73">
             <objects>
